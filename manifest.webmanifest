@@ -1,0 +1,25 @@
+{
+  "name": "Jocs educatius · Tramuntana",
+  "short_name": "Jocs Tramuntana",
+  "description": "Recursos educatius accessibles per al Centre Ocupacional Tramuntana",
+  "lang": "ca",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f7fc",
+  "theme_color": "#16345d",
+  "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
