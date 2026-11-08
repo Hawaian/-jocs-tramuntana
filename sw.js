@@ -1,5 +1,5 @@
-// Jocs Tramuntana v2.6: publicació amb fitxers locals i renovació automàtica.
-const CACHE='tramuntana-pwa-v2-6';
+// Jocs Tramuntana v2.7: publicació amb fitxers locals i renovació automàtica.
+const CACHE='tramuntana-pwa-v2-7';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./capcalera-tramuntana.webp','./capcalera-mobil-titol.webp','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));

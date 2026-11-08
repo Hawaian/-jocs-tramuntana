@@ -1,6 +1,6 @@
 <!doctype html><html lang="ca"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#07466e"><meta name="description" content="Jocs i activitats educatives accessibles del Centre Ocupacional Tramuntana"><meta name="color-scheme" content="light">
-<title>Jocs Educatius · Tramuntana</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png"><style>/* Jocs Tramuntana 2.6 — estètica mediterrània, tàctil i accessible */
+<title>Jocs Educatius · Tramuntana</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png"><style>/* Jocs Tramuntana 2.7 — estètica mediterrània, tàctil i accessible */
 :root{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#153355;background:#eef7fc;font-synthesis:none;scroll-behavior:smooth}
 *{box-sizing:border-box}html{scroll-padding-top:20px}body{margin:0;min-width:320px}
 button,input,select{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #e99f1d;outline-offset:3px}[hidden]{display:none!important}
@@ -25,7 +25,7 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
 @media(prefers-reduced-motion:reduce){:root{scroll-behavior:auto}.category-button{transition:none}}
 
 
-/* Jocs Tramuntana v2.6 — capçalera il·lustrada definitiva (art original aprovat)
+/* Jocs Tramuntana v2.7 — capçalera il·lustrada definitiva (art original aprovat)
    sense retallar el molí, amb crops específics per pantalles estretes. */
 .visually-hidden{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .site-hero{background:#e5f5ff;border-bottom:4px solid #68ca91;box-shadow:0 4px 16px #1b5a8d12}
@@ -37,7 +37,9 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
 .hero-action:hover,.hero-action:focus-visible{outline:3px solid #ed9f18;background:#ffffff22}
 .hero-action-info{right:8.6%}
 .hero-action-settings{right:2.7%}
+.hero-egg{position:absolute;pointer-events:auto;border:0;background:transparent;color:transparent;cursor:pointer;border-radius:30px;opacity:.02}.hero-egg:hover,.hero-egg:focus-visible{opacity:.18;outline:3px dashed #f2cf61;background:#fff4b4}.hero-egg-wide{top:6%;right:.8%;width:13%;height:58%}.hero-egg-mobile{display:none}
 .about-dialog{width:min(92vw,520px);border:2px solid #91cdec;border-radius:20px;background:#fff;color:#153355;box-shadow:0 25px 65px #0c2f5080;padding:24px}
+.aura-dialog{text-align:center;overflow:hidden}.aura-dialog h2{font-size:28px}.aura-score{font-size:34px;font-weight:900;color:#0a5f91;margin:5px 0 10px}.aura-note{font-size:18px;color:#3d5c72}.aura-burst{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:14px 0 18px}.aura-burst span{font-size:31px;animation:floaty 1.9s ease-in-out infinite}.aura-burst span:nth-child(2){animation-delay:.15s}.aura-burst span:nth-child(3){animation-delay:.3s}.aura-burst span:nth-child(4){animation-delay:.45s}.aura-burst span:nth-child(5){animation-delay:.6s}.aura-burst span:nth-child(6){animation-delay:.75s}.aura-sign{display:inline-block;margin-top:6px;padding:8px 14px;border-radius:999px;background:#eef8ff;color:#0b4f84;font-weight:800}@keyframes floaty{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-7px) scale(1.08)}}
 .about-dialog::backdrop{background:#0a2f5299}
 .about-dialog h2{margin:0 0 10px;color:#063d74;font-size:25px}
 .about-dialog p{font-size:17px;line-height:1.5}
@@ -49,6 +51,7 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
  .hero-tools{position:static;display:flex;justify-content:flex-end;gap:10px;padding:9px 14px;background:linear-gradient(90deg,#e8f8ff,#f7fffc)}
  .hero-action{position:static;min-width:48px;width:48px;aspect-ratio:1;font-size:26px;border:2px solid #c3e1f2;background:#f1faff;color:#10356b;box-shadow:0 2px 7px #13507a37}
  .hero-action-info{right:auto}.hero-action-settings{right:auto}
+ .hero-egg-wide{display:none}.hero-egg-mobile{display:block;top:46%;right:.5%;width:25%;height:28%}
 }
 </style></head><body>
 <header class="site-hero">
@@ -63,6 +66,8 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
       <button class="hero-action hero-action-info" id="hero-info" type="button" aria-label="Informació de Jocs Tramuntana" title="Informació">i</button>
       <button class="hero-action hero-action-settings" id="hero-settings" type="button" aria-label="Activa o desactiva la lletra gran" title="Lletra gran">⚙</button>
     </div>
+    <button class="hero-egg hero-egg-wide" type="button" aria-label="Secret del molí"></button>
+    <button class="hero-egg hero-egg-mobile" type="button" aria-label="Secret del molí"></button>
   </div>
 </header>
 <dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title">
@@ -71,13 +76,21 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
   <p>Els jocs propis es poden utilitzar sense connexió després de carregar l'aplicació. Els recursos externs necessiten Internet.</p>
   <button id="about-close" type="button">Tanca</button>
 </dialog>
+<dialog class="about-dialog aura-dialog" id="aura-dialog" aria-labelledby="aura-title">
+  <h2 id="aura-title">🥚 Secret del molí descobert!</h2>
+  <p class="aura-score">AURA +9999</p>
+  <p class="aura-note">Has trobat l'Easter egg de Jocs Tramuntana. Tens aura oficial del Tramuntana 😎</p>
+  <div class="aura-burst" aria-hidden="true"><span>🌪️</span><span>✨</span><span>💙</span><span>💚</span><span>🏆</span><span>✨</span></div>
+  <p><span class="aura-sign">Davilong Edition · Fet amb ❤️ al Tramuntana</span></p>
+  <button id="aura-close" type="button">Tanca</button>
+</dialog>
 <main class="shell"><section aria-labelledby="cat-title"><div class="section-head"><div><h2 id="cat-title" class="section-title">Tria una categoria</h2><p class="section-note">Activitats per treballar diferents habilitats</p></div><button id="big" class="accessibility" type="button" aria-pressed="false">🔎 Lletra gran</button></div><div id="group-buttons" class="category-grid" aria-label="Categories de jocs"></div></section>
 <nav class="shortcuts" aria-label="Seccions de la web"><button class="shortcut shortcut-fav" data-tab="favorits" aria-selected="false" type="button"><span class="big-icon" aria-hidden="true">⭐</span><span><strong>Preferits</strong><small>Els jocs que més t'agraden</small></span><span class="arrow" aria-hidden="true">›</span></button><button class="shortcut shortcut-own" data-tab="propis" aria-selected="false" type="button"><span class="big-icon" aria-hidden="true">🎮</span><span><strong>Jocs propis</strong><small>Activitats del Tramuntana</small></span><span class="arrow" aria-hidden="true">›</span></button><button class="shortcut shortcut-all" data-tab="biblioteca" aria-selected="true" type="button"><span class="big-icon" aria-hidden="true">🎯</span><span><strong>Tots els jocs</strong><small>Catàleg complet de recursos</small></span><span class="arrow" aria-hidden="true">›</span></button></nav>
 <section id="biblioteca" class="content-area" aria-labelledby="library-title"><h2 class="section-title" id="library-title">Catàleg de jocs</h2><p class="section-note" id="group-description">Tots els recursos, ordenats alfabèticament</p><div class="search-panel" style="margin-top:15px"><div class="filters"><div class="field"><label for="search">Cerca un joc o una activitat</label><input id="search" type="search" placeholder="Escriu el nom d'un joc..." autocomplete="off"></div><div class="field"><label for="level">Dificultat</label><select id="level"><option value="">Tots els nivells</option><option value="Inicial">Inicial</option><option value="Mitjà">Mitjà</option></select></div><div class="field"><label for="lang">Idioma</label><select id="lang"><option value="">Tots els idiomes</option><option value="CA">Català</option><option value="ES">Castellà</option><option value="EN">Anglès</option></select></div></div><p class="sort-info"><span class="az-badge">A → Z</span> Ordenació alfabètica en català (també amb els filtres i els preferits)</p></div><div class="status"><strong id="count" aria-live="polite"></strong><button id="reset" class="filterbtn" type="button">Mostra tots els jocs</button></div><div id="cards" class="cards"></div></section>
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Els teus preferits</h2><p class="section-note">Ordenats de la A a la Z. Es guarden en aquesta tauleta.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Jocs propis del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Jocs Tramuntana.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🎮 Jocs Educatius · Tramuntana</strong><span>Tramuntana · Versió 2.6</span></footer>
+<footer class="footer"><strong>🎮 Jocs Educatius · Tramuntana</strong><span>Tramuntana · Versió 2.7</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -213,6 +226,12 @@ const infoDialog=$('about-dialog');
 $('hero-info').addEventListener('click',()=>infoDialog.showModal());
 $('about-close').addEventListener('click',()=>infoDialog.close());
 $('hero-settings').addEventListener('click',()=>$('big').click());
+const auraDialog=$('aura-dialog');
+$('aura-close').addEventListener('click',()=>auraDialog.close());
+let eggClicks=0,eggTimer=null;
+function showAura(){auraDialog.showModal();try{localStorage.setItem('tramuntana-aura','1')}catch{}}
+function registerEggTap(){eggClicks++;if(eggTimer)clearTimeout(eggTimer);if(eggClicks>=5){eggClicks=0;showAura();return}eggTimer=setTimeout(()=>{eggClicks=0;eggTimer=null},2400)}
+document.querySelectorAll('.hero-egg').forEach(btn=>btn.addEventListener('click',registerEggTap));
 try{if(localStorage.getItem('tramuntana-big')==='1'){document.body.classList.add('big');$('big').setAttribute('aria-pressed','true')}}catch{}
 $('big').addEventListener('click',()=>{const v=document.body.classList.toggle('big');$('big').setAttribute('aria-pressed',String(v));try{localStorage.setItem('tramuntana-big',v?'1':'0')}catch{}});
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
