@@ -1,6 +1,6 @@
-// Jocs Tramuntana v2.4: publicació amb fitxers locals i renovació automàtica.
-const CACHE='tramuntana-pwa-v2-4';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./logo-tramuntana.png','./paisatge-tramuntana.webp','./icon-192.png','./icon-512.png'];
+// Jocs Tramuntana v2.6: publicació amb fitxers locals i renovació automàtica.
+const CACHE='tramuntana-pwa-v2-6';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./capcalera-tramuntana.webp','./capcalera-mobil-titol.webp','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
 });
