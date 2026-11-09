@@ -1,0 +1,21 @@
+JOCS EDUCATIUS · TRAMUNTANA — VERSIÓ 2.7.1
+================================================
+
+CORRECCIÓ D'IMATGE AL MÒBIL:
+- El logotip del Tramuntana es mostra complet.
+- El títol «Jocs Educatius» ja no queda tallat.
+- El viver i el molí apareixen en una escena neta, sense duplicar text.
+- Easter egg del molí operatiu: toca'l cinc vegades seguides.
+- La capçalera panoràmica del PC i tauletes es manté intacta.
+- Les categories, els jocs i els preferits continuen ordenats de l'A a la Z.
+- Caché PWA renovada per mostrar correctament les imatges noves.
+
+PER ACTUALITZAR A GITHUB:
+1. Entra a https://github.com/Hawaian/-jocs-tramuntana
+2. Prem Add file > Upload files.
+3. Puja els 8 fitxers de la carpeta (tots, excepte INSTRUCCIONS.txt).
+4. Fes Commit changes.
+5. Obre Jocs Tramuntana i prem «Actualitza» si apareix l'avís.
+6. Comprova al mòbil que es veuen els dos títols complets i el molí.
+
+No cal reinstal·lar l'aplicació a les CUBOT.
