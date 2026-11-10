@@ -1,6 +1,6 @@
 <!doctype html><html lang="ca"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#082b58"><meta name="description" content="Recursos, estimulació i aprenentatge per al Centre Ocupacional Tramuntana"><meta name="color-scheme" content="light">
-<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=301"><style>/* Ment Activa 3.0.1 — paleta coherent amb la nova icona */
+<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=302"><style>/* Ment Activa 3.0.2 — capçalera PC més acolorida amb la nova icona */
 :root{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#153355;background:#eef7fc;font-synthesis:none;scroll-behavior:smooth}
 *{box-sizing:border-box}html{scroll-padding-top:20px}body{margin:0;min-width:320px}
 button,input,select{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #e99f1d;outline-offset:3px}[hidden]{display:none!important}
@@ -141,15 +141,69 @@ h2.section-title{color:#082f5c}
   .cards{grid-template-columns:repeat(4,minmax(0,1fr))}
 }
 @media(prefers-reduced-motion:reduce){.module-btn{transition:none}}
+
+/* 3.0.2 — Capçalera amb continuïtat de paisatge, sense buits blancs.
+   S'usen els colors de la icona i les flors de la il·lustració existent. */
+.ment-brand{overflow:hidden;isolation:isolate;
+  background:
+    radial-gradient(ellipse 60% 65% at 0% 10%,#8edee9c9,transparent 95%),
+    radial-gradient(ellipse 70% 65% at 100% 0%,#bed4ff,transparent 88%),
+    radial-gradient(ellipse 82% 52% at 65% 100%,#b3f0de,transparent 94%),
+    linear-gradient(160deg,#c5eafc,#def5ff 45%,#c7f1e2 100%);
+}
+.ment-brand::before{
+  content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 26% 22% at 0% 16%,#00baa66a 0%,transparent 100%),
+    radial-gradient(ellipse 27% 20% at 100% 12%,#5378ff66 0%,transparent 100%),
+    radial-gradient(ellipse 43% 33% at 10% 93%,#edbd4f9a 0%,transparent 100%),
+    radial-gradient(ellipse 41% 27% at 96% 100%,#f5747a7c 0%,transparent 100%);
+}
+.ment-brand::after{
+  content:"";position:absolute;z-index:-1;left:0;right:0;bottom:0;height:clamp(88px,9vw,158px);pointer-events:none;
+  background-image:url('./capcalera-mobil-viver.webp');
+  background-size:100% auto;background-position:center bottom;background-repeat:no-repeat;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 72%);
+  mask-image:linear-gradient(to bottom,transparent 0%,#000 72%);
+  opacity:.58;
+}
+.ment-brand-card{
+  position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;width:min(100%,625px);
+  padding:clamp(16px,1.6vw,26px) clamp(16px,2vw,35px);
+  border:1.5px solid #ffffffec;border-radius:25px;
+  background:linear-gradient(145deg,#fffffff0 0%,#effffcF0 60%,#f0f5fff2 100%);
+  box-shadow:0 9px 32px #0b3b7126,0 0 0 6px #ffffff24;
+}
+@media(min-width:1200px){
+  .ment-hero{grid-template-columns:minmax(0, .43fr) minmax(0, .57fr)}
+  .ment-brand{padding:clamp(18px,1.5vw,28px)}
+  .ment-logo{max-height:180px;width:clamp(250px,20vw,390px)}
+  .ment-heading h1{font-size:clamp(38px,3vw,64px);margin:3px 0 8px}
+  .ment-eyebrow{font-size:clamp(16px,1.27vw,23px)}
+  .ment-heading p.ment-subtitle{font-size:clamp(16px,1.12vw,21px)}
+}
+@media(max-width:870px){
+  .ment-brand{padding:22px 16px 25px}
+  .ment-brand-card{width:min(98%,540px);padding:12px 18px;border-radius:22px}
+  .ment-brand::after{height:100px;opacity:.33}
+}
+@media(max-width:1199px){
+  .ment-brand{background:linear-gradient(132deg,#eff9ff 0%,#f4f7ff 64%,#eefcfa 100%);overflow:visible}
+  .ment-brand::before,.ment-brand::after{display:none}
+  .ment-brand-card{display:flex;flex-direction:column;align-items:center;width:100%;max-width:none;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
+}
 </style></head><body>
 <header class="site-hero">
  <div class="ment-hero">
   <div class="ment-brand">
-   <img src="./marca-tramuntana.webp" class="ment-logo" alt="Tramuntana · Centre ocupacional i especial de treball" width="612" height="280" decoding="async" fetchpriority="high">
-   <div class="ment-heading">
-    <h1>Ment <em>Activa</em></h1>
-    <div class="ment-eyebrow">Plataforma d'activitats i recursos</div>
-    <p class="ment-subtitle">Estimulació cognitiva</p>
+   <div class="ment-brand-card">
+    <img src="./marca-tramuntana.webp" class="ment-logo" alt="Tramuntana · Centre ocupacional i especial de treball" width="612" height="280" decoding="async" fetchpriority="high">
+    <div class="ment-heading">
+     <h1>Ment <em>Activa</em></h1>
+     <div class="ment-eyebrow">Plataforma d'activitats i recursos</div>
+     <p class="ment-subtitle">Estimulació cognitiva</p>
+    </div>
    </div>
   </div>
   <div class="ment-scene">
@@ -202,7 +256,7 @@ h2.section-title{color:#082f5c}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Favorits oficials <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els canvis es publiquen des de GitHub i es comparteixen amb totes les tauletes.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.1</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.2</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩

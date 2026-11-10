@@ -1,5 +1,5 @@
-// Tramuntana · Ment Activa 3.0.1 · PWA estàtica, configuració actualitzable.
-const CACHE='mentactiva-pwa-v3-0-1';
+// Tramuntana · Ment Activa 3.0.2 · PWA estàtica, configuració actualitzable.
+const CACHE='mentactiva-pwa-v3-0-2';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./marca-tramuntana.webp','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./favorits.json','./analitica.json'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>(k.startsWith('tramuntana-pwa-')||k.startsWith('mentactiva-pwa-'))&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});

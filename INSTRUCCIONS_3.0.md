@@ -1,4 +1,4 @@
-# Tramuntana · Ment Activa 3.0.1
+# Tramuntana · Ment Activa 3.0.2
 
 **Actualització visual sobre la 3.0:** imatge de PWA substituïda per la icona original de quatre símbols (turquesa, groc, blau i coral) triada per l'usuari; versió `maskable` per Android. Paleta de categories i components coordinada. Capçalera estesa a tota l'amplada al PC i contingut més ample a pantalles grans, sense canviar la disposició de les tauletes i mòbils. Els recursos, els perfils, els favorits i l'analítica de la 3.0 es mantenen.
 
@@ -51,3 +51,9 @@ La franja de fulles i el traç verd que quedaven sota «Centre ocupacional i esp
 - PWA offline: carrega un cop amb Internet; desconnecta i comprova els jocs propis. Els recursos externs i les estadístiques necessiten connexió.
 
 Canvi deliberat: el nom nou de la plataforma NO obliga a comprar cap domini. Seguim amb https://hawaian.github.io/-jocs-tramuntana/.
+
+
+## Ajust visual 3.0.2
+- Part esquerra de la capçalera amb cel blau/turquesa, colors suaus i flors de la il·lustració original.
+- Targeta blanca de lectura i més espai per a la il·lustració a la dreta.
+- No canvien les dades de GoatCounter, els favorits ni els jocs.
