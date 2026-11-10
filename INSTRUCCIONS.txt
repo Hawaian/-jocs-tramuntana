@@ -1,12 +1,3 @@
-TRAMUNTANA · MENT ACTIVA 3.0
-=============================
-
-Aquesta versió substitueix la 2.7.2.
-
-1. Descomprimeix el ZIP i puja els fitxers a l’arrel del repositori GitHub (-jocs-tramuntana).
-2. Els fitxers `favorits.json` i `analitica.json` han d’estar al costat d’`index.html`.
-3. Configura els favorits de STO, STOA i SOI editant `favorits.json` des de GitHub.
-4. GoatCounter JA ESTÀ CONFIGURAT a `analitica.json`; començarà a rebre dades quan publiquis la web.
-5. Prova la web al PC i al mòbil abans d’actualitzar totes les CUBOT.
-
-Per instruccions completes, obre INSTRUCCIONS_3.0.md.
+TRAMUNTANA · MENT ACTIVA 3.0.1
+Puja tots els fitxers del ZIP a l’arrel del repositori.
+Llegeix INSTRUCCIONS_3.0.md per a detalls.

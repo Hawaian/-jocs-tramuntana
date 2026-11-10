@@ -1,4 +1,14 @@
-# Tramuntana · Ment Activa 3.0
+# Tramuntana · Ment Activa 3.0.1
+
+**Actualització visual sobre la 3.0:** imatge de PWA substituïda per la icona original de quatre símbols (turquesa, groc, blau i coral) triada per l'usuari; versió `maskable` per Android. Paleta de categories i components coordinada. Capçalera estesa a tota l'amplada al PC i contingut més ample a pantalles grans, sense canviar la disposició de les tauletes i mòbils. Els recursos, els perfils, els favorits i l'analítica de la 3.0 es mantenen.
+
+**Com actualitzar:** descomprimeix aquest ZIP i puja'n els fitxers a l'arrel de GitHub, substituint els fitxers antics. Espera la publicació i recarrega la PWA. **Si la icona antiga continua a l'escriptori o a l'inici d'Android, desinstal·la l'accés de Ment Activa i torna a instal·lar-la des de Brave o Chrome.** Aquest canvi pot no actualitzar les icones dels accessos directes ja instal·lats fins que els reinstal·lis.
+
+**GoatCounter** i `favorits.json` continuen configurats com a la 3.0. Les estadístiques poden bloquejar-se per la protecció antirastreig del navegador. No hi ha un comptador d'usuaris identificats.
+
+---
+
+# Instruccions originals de la 3.0
 
 Nova versió basada en Jocs Tramuntana 2.7.2. La capçalera conserva el logotip i el viver amb el molí, elimina els ornaments de sota del nom del centre, destaca «PLATAFORMA D’ACTIVITATS I RECURSOS» i afegeix «Estimulació cognitiva».
 
