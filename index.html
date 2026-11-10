@@ -1,6 +1,6 @@
 <!doctype html><html lang="ca"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#082b58"><meta name="description" content="Recursos, estimulació i aprenentatge per al Centre Ocupacional Tramuntana"><meta name="color-scheme" content="light">
-<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=302"><style>/* Ment Activa 3.0.2 — capçalera PC més acolorida amb la nova icona */
+<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=302"><style>/* Ment Activa 3.0.3 — títol principal més gran i amb més presència al bloc esquerre */
 :root{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#153355;background:#eef7fc;font-synthesis:none;scroll-behavior:smooth}
 *{box-sizing:border-box}html{scroll-padding-top:20px}body{margin:0;min-width:320px}
 button,input,select{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #e99f1d;outline-offset:3px}[hidden]{display:none!important}
@@ -79,7 +79,7 @@ body.big .category-title{font-size:25px}body.big .card-head h3{font-size:25px}bo
 .select-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.select-choices button{min-height:82px;font-size:21px;border:2px solid #add9e5;color:#0c4773;background:#ecf8ff;border-radius:16px}.select-choices button:hover,.select-choices button:focus-visible{background:#d0effd}
 .odd-choices,.sort-choices{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:25px auto;max-width:640px}.odd-choice,.sort-choice{font-size:clamp(27px,5vw,38px);min-width:78px;min-height:78px;border-radius:16px}
 .sort-choice.matched{background:#d2f4e3;border-color:#1e9b65}.sort-choice:disabled{opacity:.6}
-body.big .module-btn{font-size:25px;min-height:82px}body.big .ment-heading h1{font-size:clamp(38px,4.4vw,70px)}
+body.big .module-btn{font-size:25px;min-height:82px}body.big .ment-heading h1{font-size:clamp(42px,4.8vw,82px)}
 @media(max-width:870px){.ment-hero{grid-template-columns:1fr}.ment-brand{padding:18px}.ment-scene{min-height:260px;height:auto;aspect-ratio:932/465}.ment-scene>img{object-fit:cover}.ment-logo{width:min(310px,70%)}.ment-heading h1{font-size:clamp(34px,6vw,49px)}}
 @media(max-width:560px){.ment-brand{padding:10px 14px 19px}.ment-logo{max-height:150px;width:min(290px,75%)}.ment-heading h1{font-size:clamp(34px,8vw,43px)}.ment-eyebrow{font-size:clamp(15px,4vw,18px);letter-spacing:.01em}.ment-heading p.ment-subtitle{font-size:15px}.ment-scene{min-height:0;aspect-ratio:932/465}.ment-tools{top:8px;right:8px}.ment-tools .hero-action{width:43px;min-width:43px;font-size:23px}.ment-scene .hero-egg{top:4%;right:0;width:25%;height:54%}.module-panel{padding:14px}.module-choices{grid-template-columns:repeat(2,minmax(0,1fr))}.module-btn{min-height:58px;font-size:17px}.select-choices button{min-height:68px;font-size:18px}}
 @media(prefers-reduced-motion:reduce){.ment-hero *{scroll-behavior:auto}}
@@ -117,13 +117,13 @@ h2.section-title{color:#082f5c}
 .footer{background:linear-gradient(100deg,#062551,#073b75 58%,#086c79);border-top:4px solid #05b6aa}
 .ment-tools .hero-action{border-color:#b6d1eb;color:#083a70}
 @media(min-width:871px){
-  .ment-hero{max-width:none;width:100%;grid-template-columns:minmax(0, .96fr) minmax(0,1.04fr);min-height:clamp(355px,27vw,505px)}
-  .ment-brand{padding:24px clamp(20px,3vw,74px) 29px}
-  .ment-logo{width:clamp(300px,25vw,440px);max-height:205px}
-  .ment-heading{max-width:800px}
-  .ment-heading h1{font-size:clamp(43px,3.3vw,78px);margin:2px 0 10px}
-  .ment-eyebrow{font-size:clamp(18px,1.29vw,30px)}
-  .ment-heading p.ment-subtitle{font-size:clamp(17px,1.08vw,25px)}
+  .ment-hero{max-width:none;width:100%;grid-template-columns:minmax(0, .94fr) minmax(0,1.06fr);min-height:clamp(355px,27vw,505px)}
+  .ment-brand{padding:22px clamp(18px,2.6vw,56px) 24px}
+  .ment-logo{width:clamp(310px,24vw,430px);max-height:192px}
+  .ment-heading{max-width:none;width:100%}
+  .ment-heading h1{font-size:clamp(54px,4.25vw,96px);margin:0 0 10px;line-height:1.0}
+  .ment-eyebrow{font-size:clamp(21px,1.6vw,34px);letter-spacing:.028em}
+  .ment-heading p.ment-subtitle{font-size:clamp(20px,1.35vw,29px);margin-top:8px}
   .ment-scene{min-height:355px}
   .ment-scene>img{object-position:52% 50%}
   .ment-tools{top:clamp(12px,1.7vw,26px);right:clamp(12px,1.7vw,26px)}
@@ -256,7 +256,7 @@ h2.section-title{color:#082f5c}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Favorits oficials <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els canvis es publiquen des de GitHub i es comparteixen amb totes les tauletes.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.2</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.3</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
