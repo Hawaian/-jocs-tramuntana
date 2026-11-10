@@ -1,8 +1,8 @@
 {
   "id": "./",
-  "name": "Jocs Educatius · Tramuntana",
-  "short_name": "Jocs Tramuntana",
-  "description": "Jocs i activitats educatives accessibles per al Centre Ocupacional Tramuntana",
+  "name": "Tramuntana · Ment Activa",
+  "short_name": "Ment Activa",
+  "description": "Recursos, estimulació i aprenentatge per al Centre Ocupacional Tramuntana",
   "lang": "ca",
   "start_url": "./",
   "scope": "./",
@@ -11,13 +11,13 @@
   "theme_color": "#07466e",
   "icons": [
     {
-      "src": "./icon-tramuntana-192.png",
+      "src": "./icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "./icon-tramuntana-512.png",
+      "src": "./icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"

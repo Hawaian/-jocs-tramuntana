@@ -1,19 +1,19 @@
-// Jocs Tramuntana v2.7.1: publicació amb fitxers locals i renovació automàtica.
-const CACHE='tramuntana-pwa-v2-7-1-icona2';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./capcalera-tramuntana.webp','./capcalera-mobil-titol.webp','./capcalera-mobil-viver.webp','./icon-tramuntana-192.png','./icon-tramuntana-512.png'];
-self.addEventListener('install',event=>{
- event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
-});
-self.addEventListener('activate',event=>{
- event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('tramuntana-pwa-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim()));
-});
-self.addEventListener('message',event=>{if(event.data&&event.data.type==='SKIP_WAITING')self.skipWaiting()});
+// Tramuntana · Ment Activa 3.0 · PWA estàtica, configuració actualitzable.
+const CACHE='mentactiva-pwa-v3-0';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./marca-tramuntana.webp','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./favorits.json','./analitica.json'];
+self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
+self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>(k.startsWith('tramuntana-pwa-')||k.startsWith('mentactiva-pwa-'))&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
+self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('fetch',event=>{
- const req=event.request,url=new URL(req.url);
- if(req.method!=='GET'||url.origin!==self.location.origin)return;
- if(req.mode==='navigate'){
-  event.respondWith(fetch(req).then(response=>{if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put('./index.html',copy)))}return response}).catch(()=>caches.match('./index.html')));
- }else{
-  event.respondWith(caches.match(req).then(cached=>cached||fetch(req).then(response=>{if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(req,copy)))}return response})));
+ const req=event.request;if(req.method!=='GET')return;
+ const url=new URL(req.url);if(url.origin!==self.location.origin)return;
+ const target=url.pathname.split('/').pop();
+ if(target==='favorits.json'||target==='analitica.json'){
+   event.respondWith(fetch(req,{cache:'no-store'}).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(req,copy)))}return res}).catch(async()=>await caches.match(req)||Response.error()));
+   return;
  }
+ if(req.mode==='navigate'){
+   event.respondWith(fetch(req).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put('./index.html',copy)))}return res}).catch(async()=>await caches.match('./index.html')||Response.error()));return;
+ }
+ event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(req,copy)))}return res})));
 });
