@@ -1,3 +1,0 @@
-TRAMUNTANA · MENT ACTIVA 3.0.2
-Puja tots els fitxers del ZIP a l’arrel del repositori.
-Llegeix INSTRUCCIONS_3.0.md per a detalls.
