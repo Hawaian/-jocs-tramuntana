@@ -1,6 +1,6 @@
 <!doctype html><html lang="ca"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#082b58"><meta name="description" content="Recursos, estimulació i aprenentatge per al Centre Ocupacional Tramuntana"><meta name="color-scheme" content="light">
-<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=304"><style>/* Ment Activa 3.0.4 — capçalera ampliada i fitxers optimitzats */
+<title>Tramuntana · Ment Activa</title><link rel="manifest" href="./manifest.webmanifest"><link rel="icon" type="image/png" href="./icon-192.png?v=305"><style>/* Ment Activa 3.0.5 — gestió de favorits per mòdul */
 :root{font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:#153355;background:#eef7fc;font-synthesis:none;scroll-behavior:smooth}
 *{box-sizing:border-box}html{scroll-padding-top:20px}body{margin:0;min-width:320px}
 button,input,select{font:inherit}button,a,select{touch-action:manipulation}button{cursor:pointer}a{color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid #e99f1d;outline-offset:3px}[hidden]{display:none!important}
@@ -198,6 +198,29 @@ h2.section-title{color:#082f5c}
   .ment-brand::before,.ment-brand::after{display:none}
   .ment-brand-card{display:flex;flex-direction:column;align-items:center;width:100%;max-width:none;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
 }
+
+/* 3.0.5 — selecció de favorits reservada al mode de gestió (no és autenticació). */
+.manage-entry{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:14px;border-top:1px solid #d4e6f1;padding-top:13px}
+.manage-entry>span{font-size:13px;color:#436a82}.manage-open,.manage-quiet{background:#fff;border:2px solid #b7d4e6;color:#16446e;border-radius:12px;padding:10px 14px;min-height:45px;font-weight:800}
+.manage-open:disabled{opacity:.55;cursor:wait}.manage-panel{border:2px solid #e6b74f;border-radius:20px;background:linear-gradient(135deg,#fffaf0,#f4faff 85%);padding:22px;margin:0 0 23px;box-shadow:0 6px 26px #214a6c18;scroll-margin-top:18px}
+.manage-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}.manage-top h2{margin:3px 0;color:#0c386c;font-size:clamp(22px,2.5vw,30px)}
+.manage-kicker{font-size:12px;color:#8d5409;font-weight:900;letter-spacing:.03em;text-transform:uppercase;margin:0}.manage-panel>p{line-height:1.5;color:#2c4d69}
+.manage-modules{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.manage-modules button{background:white;color:#15446c;border:2px solid #b8d4e8;border-radius:13px;min-height:50px;font-weight:850;padding:9px 18px;flex:1 1 130px}
+.manage-modules button[aria-pressed="true"]{background:#083f72;border-color:#083f72;color:white}
+.manage-feedback{color:#19436c;font-weight:750;line-height:1.4;margin:12px 0;min-height:24px}
+.manage-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px}
+.manage-export{background:#07598e;color:white;border:0;border-radius:13px;min-height:52px;padding:12px 19px;font-weight:900}.manage-export:hover{background:#084271}
+.manage-link{color:#135d91;font-weight:850;text-decoration:underline}.manage-explain{border-left:4px solid #e6ad3b;padding:9px 12px;background:#fff7df;border-radius:8px;font-size:14px}
+body.managing .fav-star{display:grid;place-items:center}
+.fav-star{font-weight:900;transition:transform .1s,background .1s}
+.fav-star:hover{transform:scale(1.08)}.fav-star[aria-pressed="false"]{background:#fff;border-color:#bfd2df;color:#8698a5}
+.own-fav-star{display:none!important}
+body.managing .own-fav-star{display:inline-grid!important;place-items:center;min-width:48px;min-height:50px;padding:5px!important;color:#687987!important;background:#fffaf1!important;border:2px solid #ebce90!important;font-size:25px}
+body.managing .own-fav-star[aria-pressed="true"]{background:#ffe2a6!important;color:#9e6207!important}
+.own-game-item{display:inline-flex;align-items:stretch;gap:5px;min-width:0;flex-wrap:nowrap}
+.own-favorite-card .go{border:0;cursor:pointer;font:inherit;font-weight:800;background:#0c648d;color:#fff}
+@media(max-width:560px){.manage-panel{padding:15px}.manage-top{align-items:flex-start}.manage-actions{align-items:stretch;flex-direction:column}.manage-export{width:100%}}
 </style></head><body>
 <header class="site-hero">
  <div class="ment-hero">
@@ -224,7 +247,7 @@ h2.section-title{color:#082f5c}
 <dialog class="about-dialog" id="about-dialog" aria-labelledby="about-title">
   <h2 id="about-title">Tramuntana · Ment Activa</h2>
   <p>Plataforma d’activitats, recursos i estimulació cognitiva per practicar memòria, atenció, llengua, càlcul, autonomia i altres habilitats al teu ritme.</p>
-  <p>Les activitats pròpies funcionen sense connexió després de la primera visita; els recursos externs necessiten Internet. Els favorits oficials es gestionen des de GitHub. Les estadístiques, quan s'activin, són agregades i no identifiquen els participants.</p>
+  <p>Les activitats pròpies funcionen sense connexió després de la primera visita; els recursos externs necessiten Internet. Els educadors poden preparar els favorits des de la web i publicar-los a GitHub. Les estadístiques, quan s'activin, són agregades i no identifiquen els participants.</p>
   <button id="about-close" type="button">Tanca</button>
 </dialog>
 <dialog class="about-dialog aura-dialog" id="aura-dialog" aria-labelledby="aura-title">
@@ -254,6 +277,19 @@ h2.section-title{color:#082f5c}
   <button type="button" class="module-btn" data-module="TOTS">📚 <strong>Tots els jocs</strong></button>
  </div>
  <div class="module-note">Els favorits de cada mòdul són compartits entre tauletes. El catàleg general sempre és accessible.</div>
+ <div class="manage-entry"><button id="manage-open" type="button" class="manage-open" disabled>⚙ Gestiona els favorits</button><span id="manage-load-status" role="status" aria-live="polite">Carregant els favorits compartits…</span></div>
+</section>
+<section id="manage-panel" class="manage-panel" aria-labelledby="manage-title" hidden>
+ <div class="manage-top"><div><p class="manage-kicker">Només per a l'equip educatiu · Edició local</p><h2 id="manage-title">⭐ Gestiona els favorits</h2></div><button id="manage-close" type="button" class="manage-quiet">Tanca el mode de gestió</button></div>
+ <p>Tria un mòdul i toca les <strong>estrelles</strong> dels recursos del catàleg o de les activitats pròpies. Pots preparar els tres mòduls abans de descarregar el fitxer.</p>
+ <div class="manage-modules" role="group" aria-label="Mòdul que estàs editant">
+  <button type="button" data-edit-module="STO">🤝 STO <span data-edit-count="STO"></span></button>
+  <button type="button" data-edit-module="STOA">🧩 STOA <span data-edit-count="STOA"></span></button>
+  <button type="button" data-edit-module="SOI">🌱 SOI <span data-edit-count="SOI"></span></button>
+ </div>
+ <div id="manage-feedback" class="manage-feedback" role="status" aria-live="polite"></div>
+ <div class="manage-actions"><button id="manage-export" type="button" class="manage-export">⬇ Descarrega favorits.json</button><a href="https://github.com/Hawaian/-jocs-tramuntana" target="_blank" rel="noopener noreferrer" class="manage-link">Obre GitHub ↗</a></div>
+ <p class="manage-explain"><strong>Important:</strong> descarregar el fitxer <em>no</em> actualitza les altres tauletes. Cal pujar <code>favorits.json</code> a l'arrel del repositori i confirmar <strong>Commit changes</strong>. Només llavors seran favorits compartits. No cal tornar a pujar tota la web.</p>
 </section>
 <section aria-labelledby="cat-title"><div class="section-head"><div><h2 id="cat-title" class="section-title">Tria una categoria</h2><p class="section-note">Activitats per treballar diferents habilitats</p></div><button id="big" class="accessibility" type="button" aria-pressed="false">🔎 Lletra gran</button></div><div id="group-buttons" class="category-grid" aria-label="Categories de jocs"></div></section>
 <nav class="shortcuts" aria-label="Seccions de la web"><button class="shortcut shortcut-fav" data-tab="favorits" aria-selected="false" type="button"><span class="big-icon" aria-hidden="true">⭐</span><span><strong>Preferits</strong><small>Recomanats pel mòdul</small></span><span class="arrow" aria-hidden="true">›</span></button><button class="shortcut shortcut-own" data-tab="propis" aria-selected="false" type="button"><span class="big-icon" aria-hidden="true">🎮</span><span><strong>Activitats pròpies</strong><small>Activitats del Tramuntana</small></span><span class="arrow" aria-hidden="true">›</span></button><button class="shortcut shortcut-all" data-tab="biblioteca" aria-selected="true" type="button"><span class="big-icon" aria-hidden="true">🎯</span><span><strong>Tots els jocs</strong><small>Catàleg complet de recursos</small></span><span class="arrow" aria-hidden="true">›</span></button></nav>
@@ -261,7 +297,7 @@ h2.section-title{color:#082f5c}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Favorits oficials <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els canvis es publiquen des de GitHub i es comparteixen amb totes les tauletes.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.4</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.0.5</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -336,28 +372,94 @@ function groupFor(x){
 }
 let activeGroup='',game='memory',gameSerial=0,timeoutId=null;
 let activeModule='TOTS';
-let officialFavorites={STO:[],STOA:[],SOI:[]};
+let officialFavorites={STO:[],STOA:[],SOI:[]},draftFavorites=null;
+let favoritesLoaded=false,editingFavorites=false,favoritesExported=false;
 const validModules=['STO','STOA','SOI','TOTS'];
-function moduleFavorites(){return officialFavorites[activeModule]||[]}
+const editableModules=['STO','STOA','SOI'];
+const ownGames=[
+ {id:'count',name:'Comptem',emoji:'🔢'},
+ {id:'memory',name:'Parelles',emoji:'🃏'},
+ {id:'sequence',name:'Què falta?',emoji:'🔎'},
+ {id:'odd',name:'Troba l’intrús',emoji:'🧩'},
+ {id:'sort',name:'Ordena nombres',emoji:'🔢'}
+];
+const ownGameIds=new Set(ownGames.map(g=>'propi:'+g.id));
+function copyFavorites(obj){return Object.fromEntries(editableModules.map(m=>[m,[...(obj[m]||[])]]))}
+function moduleFavorites(){return (editingFavorites?draftFavorites:officialFavorites)[activeModule]||[]}
+function changedCount(){if(!draftFavorites)return 0;return editableModules.reduce((n,m)=>{const before=new Set(officialFavorites[m]),after=new Set(draftFavorites[m]);return n+[...new Set([...before,...after])].filter(k=>before.has(k)!==after.has(k)).length},0)}
+function manageUpdate(){
+ if(!editingFavorites)return;
+ const n=changedCount();
+ for(const b of document.querySelectorAll('[data-edit-module]'))b.setAttribute('aria-pressed',String(b.dataset.editModule===activeModule));
+ for(const el of document.querySelectorAll('[data-edit-count]')){const m=el.dataset.editCount;el.textContent='('+draftFavorites[m].length+')'}
+ $('manage-feedback').textContent=activeModule==='TOTS'?'Tria STO, STOA o SOI per començar a marcar favorits.':('Editant '+activeModule+' · '+draftFavorites[activeModule].length+' favorits · '+n+' canvis pendents'+(favoritesExported?' · Fitxer descarregat; pendent de publicar a GitHub':''));
+}
+function toggleFavorite(id){
+ if(!editingFavorites||!editableModules.includes(activeModule))return;
+ const a=draftFavorites[activeModule],pos=a.indexOf(id);
+ if(pos<0)a.push(id);else a.splice(pos,1);
+ favoritesExported=false;
+ manageUpdate();render();
+}
+function beginManage(){
+ if(!favoritesLoaded){$('manage-load-status').textContent='No s’han pogut carregar els favorits. Torna-ho a provar quan hi hagi connexió.';return}
+ if(!window.confirm('Vols activar el mode de gestió dels favorits? Les estrelles només canviaran un esborrany local; caldrà publicar el fitxer a GitHub.'))return;
+ draftFavorites=copyFavorites(officialFavorites);editingFavorites=true;favoritesExported=false;
+ document.body.classList.add('managing');$('manage-panel').hidden=false;
+ if(activeModule==='TOTS')setModule('STO');
+ manageUpdate();render();$('manage-panel').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function closeManage(){
+ if(!editingFavorites)return;
+ if(changedCount()&&!favoritesExported&&!window.confirm('Hi ha canvis que encara no has descarregat. Vols descartar-los?'))return;
+ editingFavorites=false;draftFavorites=null;favoritesExported=false;
+ document.body.classList.remove('managing');$('manage-panel').hidden=true;render();
+}
+function exportFavorites(){
+ if(!editingFavorites||!draftFavorites)return;
+ const obj={_info:'Favorits compartits de Tramuntana · Ment Activa. Publica aquest fitxer a GitHub. Els jocs propis tenen el prefix propi:.',...Object.fromEntries(editableModules.map(m=>[m,[...new Set(draftFavorites[m])].sort((a,b)=>collator.compare(a,b))]))};
+ const file=new Blob([JSON.stringify(obj,null,2)+'\n'],{type:'application/json;charset=utf-8'});
+ const url=URL.createObjectURL(file),a=document.createElement('a');a.href=url;a.download='favorits.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
+ favoritesExported=true;manageUpdate();
+ $('manage-feedback').textContent='Fitxer favorits.json descarregat. Ara puja’l a GitHub i prem Commit changes perquè s’actualitzin totes les tauletes.';
+}
+$('manage-open').addEventListener('click',beginManage);
+$('manage-close').addEventListener('click',closeManage);
+$('manage-export').addEventListener('click',exportFavorites);
+for(const b of document.querySelectorAll('[data-edit-module]'))b.addEventListener('click',()=>{setModule(b.dataset.editModule);manageUpdate()});
+window.addEventListener('beforeunload',e=>{if(editingFavorites&&changedCount()&&!favoritesExported){e.preventDefault();e.returnValue=''}});
+function setupOwnGameStars(){
+ for(const g of ownGames){const main=document.querySelector('[data-game="'+g.id+'"]');if(!main)continue;
+  const holder=document.createElement('span');holder.className='own-game-item';main.parentNode.insertBefore(holder,main);holder.append(main);
+  const star=document.createElement('button');star.type='button';star.className='own-fav-star';star.dataset.ownStar=g.id;star.title='Afegeix o treu dels favorits';star.textContent='☆';star.addEventListener('click',()=>toggleFavorite('propi:'+g.id));holder.append(star);
+ }
+}
+function refreshOwnGameStars(){for(const b of document.querySelectorAll('[data-own-star]')){
+ const g=ownGames.find(g=>g.id===b.dataset.ownStar),on=moduleFavorites().includes('propi:'+g.id);
+ b.textContent=on?'★':'☆';b.setAttribute('aria-pressed',String(on));b.setAttribute('aria-label',(on?'Treu ':'Afegeix ')+g.name+(on?' dels':' als')+' favorits del '+activeModule)
+}}
+
 function setModule(m,closeDialog=true){
  if(!validModules.includes(m))return;
  activeModule=m;
  for(const b of document.querySelectorAll('[data-module]')){const on=b.dataset.module===m;b.setAttribute('aria-pressed',String(on))}
  $('module-current').textContent=m==='TOTS'?'Catàleg general · totes les activitats disponibles':'Espai '+m+' · favorits compartits del mòdul';
  $('fav-module-name').textContent=m==='TOTS'?'':'· '+m;
- $('fav-description').textContent=m==='TOTS'?'Tria STO, STOA o SOI per consultar els seus favorits oficials.':'Recursos destacats del '+m+'. Es gestionen a GitHub i són iguals a totes les tauletes.';
+ $('fav-description').textContent=m==='TOTS'?'Tria STO, STOA o SOI per consultar els seus favorits oficials.':(editingFavorites?'Previsualització dels favorits del '+m+'. Encara no són compartits: cal publicar favorits.json a GitHub.':'Recursos destacats del '+m+'. Són iguals a totes les tauletes.');
  if(closeDialog&&$('select-dialog').open)$('select-dialog').close();
- setActiveTab('biblioteca');render();
+ setActiveTab('biblioteca');render();manageUpdate();
 }
 for(const b of document.querySelectorAll('[data-module]'))b.addEventListener('click',()=>setModule(b.dataset.module));
 for(const b of document.querySelectorAll('[data-choose]'))b.addEventListener('click',()=>setModule(b.dataset.choose));
 async function loadOfficialFavorites(){
  try{
   const r=await fetch('./favorits.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);
-  const obj=await r.json(),allowed=new Set(items.map(x=>x.name));
-  for(const m of ['STO','STOA','SOI'])officialFavorites[m]=Array.isArray(obj[m])?[...new Set(obj[m].filter(x=>typeof x==='string'&&allowed.has(x)))]:[];
+  const obj=await r.json(),allowed=new Set([...items.map(x=>x.name),...ownGameIds]);
+  if(editingFavorites)return; // No sobreescriu un esborrany que s'estigui editant.
+  for(const m of editableModules)officialFavorites[m]=Array.isArray(obj[m])?[...new Set(obj[m].filter(x=>typeof x==='string'&&allowed.has(x)))]:[];
+  favoritesLoaded=true;$('manage-open').disabled=false;$('manage-load-status').textContent='Llistes oficials carregades.';
   render();
- }catch(e){console.warn('Favorits compartits: s’utilitzen els últims disponibles o llistes buides',e)}
+ }catch(e){$('manage-load-status').textContent='No es poden carregar els favorits. Recarrega la pàgina quan tinguis connexió.';console.warn('No s’han pogut carregar favorits.json',e)}
 }
 
 function normalize(str){return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('ca')}
@@ -386,7 +488,9 @@ function card(x){
  const title=document.createElement('h3');title.textContent=x.name;
  const official=moduleFavorites().includes(x.name);
  heading.append(icon,title);
- if(official){const star=document.createElement('span');star.className='fav-indicator';star.textContent='★';star.setAttribute('aria-label','Favorit oficial de '+activeModule);heading.append(star)}
+ if(editingFavorites&&activeModule!=='TOTS'){
+  const star=document.createElement('button');star.type='button';star.className='fav-star';star.textContent=official?'★':'☆';star.setAttribute('aria-pressed',String(official));star.setAttribute('aria-label',(official?'Treu ':'Afegeix ')+x.name+(official?' dels':' als')+' favorits del '+activeModule);star.addEventListener('click',()=>toggleFavorite(x.name));heading.append(star)
+ }else if(official){const star=document.createElement('span');star.className='fav-indicator';star.textContent='★';star.setAttribute('aria-label','Favorit oficial de '+activeModule);heading.append(star)}
  const p=document.createElement('p');p.className='desc';p.textContent=x.desc;
  const tags=document.createElement('div');tags.className='tags';
  const labelGroup=groups.find(g=>g.id===groupFor(x))?.name||x.cat;
@@ -395,6 +499,19 @@ function card(x){
  }
  const a=document.createElement('a');a.className='go';a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent='Obrir activitat ↗';a.setAttribute('aria-label','Obrir '+x.name+' (web externa)');a.addEventListener('click',()=>trackActivity('recurs',x.name));
  el.append(heading,p,tags,a);return el;
+}
+function ownFavoriteCard(g){
+ const el=document.createElement('article');el.className='card own-favorite-card';
+ const heading=document.createElement('div');heading.className='card-head';
+ const ic=document.createElement('span');ic.className='game-icon';ic.textContent=g.emoji;
+ const h=document.createElement('h3');h.textContent=g.name;heading.append(ic,h);
+ if(editingFavorites&&activeModule!=='TOTS'){
+  const b=document.createElement('button');b.type='button';b.className='fav-star';b.textContent='★';b.setAttribute('aria-pressed','true');b.setAttribute('aria-label','Treu '+g.name+' dels favorits del '+activeModule);b.onclick=()=>toggleFavorite('propi:'+g.id);heading.append(b);
+ }else{const s=document.createElement('span');s.className='fav-indicator';s.textContent='★';heading.append(s)}
+ const d=document.createElement('p');d.className='desc';d.textContent='Joc propi del Tramuntana · sense anuncis.';
+ const tags=document.createElement('div');tags.className='tags';const t=document.createElement('span');t.className='tag';t.textContent='Activitat pròpia';tags.append(t);
+ const go=document.createElement('button');go.type='button';go.className='go';go.textContent='Juga ara →';go.onclick=()=>{setActiveTab('propis');startGame(g.id);trackActivity('propi',g.name);$('propis').scrollIntoView({behavior:'smooth',block:'start'})};
+ el.append(heading,d,tags,go);return el;
 }
 function render(){
  const q=normalize($('search').value.trim()),lev=$('level').value,lang=$('lang').value;
@@ -407,8 +524,11 @@ function render(){
  $('cards').replaceChildren(...matches.map(card));
  if(!matches.length){const p=document.createElement('p');p.className='empty';p.textContent='No hem trobat cap recurs. Prova de canviar els filtres.';$('cards').append(p)}
  const fav=items.filter(x=>moduleFavorites().includes(x.name)).sort((a,b)=>collator.compare(a.name,b.name));
- $('favcards').replaceChildren(...fav.map(card));
- if(!fav.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria STO, STOA o SOI per veure els favorits del mòdul.':'Aquest mòdul encara no té recursos destacats. Pots afegir-los al fitxer favorits.json de GitHub.';$('favcards').append(p)}
+ const own=ownGames.filter(g=>moduleFavorites().includes('propi:'+g.id));
+ const both=[...fav.map(x=>({name:x.name,el:card(x)})),...own.map(g=>({name:g.name,el:ownFavoriteCard(g)}))].sort((a,b)=>collator.compare(a.name,b.name));
+ $('favcards').replaceChildren(...both.map(x=>x.el));
+ refreshOwnGameStars();
+ if(!both.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria STO, STOA o SOI per veure els favorits del mòdul.':'Aquest mòdul encara no té recursos destacats. Els educadors poden afegir-los amb «Gestiona els favorits».';$('favcards').append(p)}
 }
 for(const id of ['search','level','lang'])$(id).addEventListener('input',render);
 $('reset').addEventListener('click',()=>{activeGroup='';for(const id of ['search','level','lang'])$(id).value='';setActiveTab('biblioteca');render()});
@@ -491,7 +611,7 @@ function startGame(g=game){clearGame();game=g;const serial=gameSerial,lev=Number
 }else{const count=[3,4,5][lev-1],step=lev===3?2:1,start=1+Math.floor(Math.random()*(lev===3?5:6)),missing=Math.floor(Math.random()*count),seq=Array.from({length:count},(_,i)=>start+i*step);const h=document.createElement('h3');h.textContent='Quin número falta?';const display=document.createElement('div');display.className='symbols';display.textContent=seq.map((n,i)=>i===missing?'❔':n).join(' · ');const opts=document.createElement('div');const correct=seq[missing],choices=new Set([correct]);while(choices.size<4)choices.add(Math.max(1,correct-3+Math.floor(Math.random()*8)));for(const v of shuffle([...choices])){const b=button(v);b.onclick=()=>{if(v===correct){fb.textContent='🎉 Correcte!';opts.querySelectorAll('button').forEach(el=>el.disabled=true);later(()=>startGame('sequence'),1200,serial)}else fb.textContent='Prova un altre número 🙂'};opts.append(b)}area.append(h,display,opts,fb)}}
 for(const b of document.querySelectorAll('[data-game]'))b.onclick=()=>{startGame(b.dataset.game);trackActivity('propi',({memory:'Parelles',count:'Comptem',sequence:'Què falta?',odd:'Troba l’intrús',sort:'Ordena nombres'})[b.dataset.game])};
 $('again').onclick=()=>{startGame();trackActivity('propi',({memory:'Parelles',count:'Comptem',sequence:'Què falta?',odd:'Troba l’intrús',sort:'Ordena nombres'})[game])};$('gamelevel').onchange=()=>startGame();
-render();setupGroups();loadOfficialFavorites();
+setupOwnGameStars();setupGroups();render();loadOfficialFavorites();
 // Mostra el selector cada cop que s’obre la pàgina, perquè les CUBOT són compartides.
 try{$('select-dialog').showModal()}catch(e){console.warn('Selector no modal',e)}
 // No es guarda el perfil de la tauleta ni s’assigna permanentment a cap mòdul.
