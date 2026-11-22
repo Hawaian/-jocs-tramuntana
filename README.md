@@ -1,37 +1,71 @@
-# Tramuntana · Ment Activa 3.0.4
+# Tramuntana · Ment Activa
 
-Plataforma d'activitats i recursos per al Centre Ocupacional Tramuntana.
+**Plataforma d’activitats i recursos d’estimulació cognitiva del Centre Ocupacional Tramuntana.**
 
-## Fitxers
+▶️ **[Obre Ment Activa](https://hawaian.github.io/-jocs-tramuntana/)** · **[Registre de canvis](CHANGELOG.md)**
 
-- `index.html`: pàgina, catàleg i activitats pròpies.
-- `marca-tramuntana.webp` i `capcalera-mobil-viver.webp`: capçalera i paisatge.
-- `icon-192.png`, `icon-512.png`, `icon-maskable-512.png`: icones de l'aplicació.
-- `manifest.webmanifest` i `sw.js`: instal·lació i ús bàsic sense connexió.
-- `favorits.json`: favorits compartits per als mòduls STO, STOA i SOI.
-- `analitica.json`: configuració del comptador GoatCounter.
+**Versió 3.2 · 22 de novembre de 2026**
 
-## Actualització
+## Què hi trobaràs
 
-Puja els fitxers del ZIP a l'**arrel** del repositori, reemplaçant els existents. GitHub no elimina automàticament els fitxers antics.
+Ment Activa reuneix jocs i recursos per treballar l’atenció, la memòria, la comunicació, l’autonomia, el càlcul i altres habilitats. Es pot utilitzar al PC o a les tauletes compartides del centre.
 
-Després de confirmar que la 3.0.4 funciona, pots eliminar aquests fitxers **obsolets** de GitHub:
+- **Quatre serveis** amb recomanacions pròpies: STO, STOA, SOI i STO SFG.
+- **Catàleg** ordenat alfabèticament, amb cerca i filtres per nivell i idioma. Les fitxes indiquen si l’enllaç obre un joc concret o un portal amb diverses activitats.
+- **Activitats pròpies** amb tres nivells de dificultat: Comptem, Parelles, Què falta?, Troba l’intrús i Ordena nombres.
+- **Activitats recents** per recuperar els recursos oberts a la mateixa tauleta.
 
-- `capcalera-tramuntana.webp`
-- `capcalera-mobil-titol.webp`
-- `INSTRUCCIONS.txt`
-- `INSTRUCCIONS_3.0.md`
+## Com començar
 
-**No eliminis** `capcalera-mobil-viver.webp` ni `marca-tramuntana.webp`: la capçalera actual les utilitza. Conserva `favorits.json` i `analitica.json`, perquè controlen dades compartides i estadístiques.
+1. Obre la web i tria **STO**, **STOA**, **SOI** o **STO SFG**. La pantalla es queda al lloc, es veu l’animació del servei i el catàleg queda disponible a sota.
+2. Toca **⭐ Preferits** per veure els recursos recomanats del servei seleccionat. Per explorar el catàleg general, toca **Tots els jocs**.
+3. Tria una categoria o cerca pel nom. Prem **Fitxa** si vols consultar l’objectiu, les indicacions i l’idioma abans d’obrir el recurs.
+4. Per jugar a una activitat del centre, obre **Activitats pròpies** i selecciona el nivell.
 
-## Perfils i favorits
+## Accessibilitat i ús a les tauletes
 
-Les tauletes són compartides. Els favorits oficials es configuren editant `favorits.json` a GitHub, amb els noms exactes dels recursos. El navegador consulta aquest fitxer amb preferència per la xarxa i pot utilitzar-ne la darrera còpia quan està sense connexió.
+El menú **⚙ Opcions de visualització** permet triar **Lletra gran**, **Lletra molt gran**, **Contrast alt** i **Reduir les animacions**. El mode **Lletra molt gran** mostra les fitxes en una sola columna. Les preferències es guarden al dispositiu.
 
-## Estadístiques
+A la CUBOT en vertical, la capçalera compacta deixa més espai al selector. Els botons d’informació i configuració queden a sobre de STO SFG tant en aquesta vista com al PC.
 
-GoatCounter: `https://tramuntanamentactiva.goatcounter.com/`. La configuració pública és a `analitica.json`. No s'hi desen noms d'usuaris ni IP completes a la web. Els visitants únics són estimats, i les proteccions antiseguiment del navegador poden impedir que es comptin algunes visites.
+### Instal·lació i funcionament sense connexió
 
-## Si encara apareix la versió anterior
+Obre Ment Activa a Brave o Chrome. Si el navegador ofereix **Instal·la l’aplicació** o **Afegeix a la pantalla d’inici**, fes servir aquesta opció per tenir-hi accés directe.
 
-Comprova que GitHub Pages ha acabat la publicació. Obre la web en una pestanya normal i refresca-la. El `sw.js` de la versió 3.0.4 renova la memòria cau de la PWA. Si utilitzes una aplicació instal·lada, tanca-la completament i torna a obrir-la després d'actualitzar la pàgina al navegador.
+Després d’una primera càrrega amb connexió, la PWA i les activitats pròpies es poden obrir sense Internet. Els recursos externs i la sincronització de preferits necessiten connexió. Si la tauleta ja ha sincronitzat els preferits, la web pot mostrar l’última còpia disponible.
+
+## Preferits compartits
+
+Cada servei té la seva pròpia llista a Supabase. Els participants poden consultar-la sense iniciar sessió. L’edició està reservada als comptes autoritzats.
+
+### Editar una llista
+
+1. Prem **Gestiona els favorits** i entra amb el compte d’administració.
+2. Tria el servei que vols editar i baixa al catàleg.
+3. Toca **☆** per afegir un recurs o **★** per treure’l.
+4. Prem **Desa i comparteix els canvis**.
+5. En una altra tauleta, obre el mateix servei i toca **⭐ Preferits**. Recarrega la pàgina si vols comprovar el canvi immediatament.
+
+Per canviar la contrasenya, el panell d’edició inclou **Canvia la contrasenya**. Fes-ho des d’una sessió d’administració activa.
+
+**Prova real de la 3.2.** S’ha desat **La Motxilla** com a favorita del **SOI** i s’ha comprovat que es veu des d’una altra tauleta.
+
+## Fitxers principals
+
+| Fitxer | Funció |
+| --- | --- |
+| [index.html](index.html) | Interfície, catàleg, activitats pròpies i gestió de preferits. |
+| [sw.js](sw.js) | Memòria cau i actualització de la PWA. |
+| [manifest.webmanifest](manifest.webmanifest) | Identitat, icones i instal·lació de la PWA. |
+| [favorits-cloud.json](favorits-cloud.json) | URL del projecte Supabase i clau publicable per a la web. |
+| [favorits.json](favorits.json) | Llistes de reserva si el servei en línia no està disponible. |
+| [analitica.json](analitica.json) | Configuració de l’analítica opcional. |
+| [CHANGELOG.md](CHANGELOG.md) | Historial de versions i canvis. |
+
+La web es publica amb **GitHub Pages**. Supabase gestiona l’accés d’administració i el desament de preferits. Les claus secretes i les contrasenyes es mantenen fora del repositori.
+
+## Publicar una actualització
+
+Puja els fitxers actualitzats a l’arrel del repositori. Quan GitHub Pages acabi, comprova la versió al peu de la web. Si la PWA mostra **Actualitza**, prem aquest botó per carregar la nova versió. Anota els canvis a [CHANGELOG.md](CHANGELOG.md).
+
+*Centre Ocupacional Tramuntana · Recursos, estimulació i aprenentatge.*
