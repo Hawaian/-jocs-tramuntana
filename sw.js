@@ -1,5 +1,5 @@
 // Tramuntana · Ment Activa 3.1.6 · PWA estàtica, configuració actualitzable.
-const CACHE='mentactiva-pwa-v3-1-6-r4';
+const CACHE='mentactiva-pwa-v3-1-6-r5';
 const ASSETS=['./','./index.html','./manifest.webmanifest','./marca-tramuntana.webp','./roda-verda.png','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./icona-sto.svg','./icona-stoa.svg','./icona-soi.svg','./icona-sfg.svg'];
 const CONFIG=['./favorits.json','./favorits-cloud.json','./analitica.json'];
 self.addEventListener('install',event=>{
