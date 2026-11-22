@@ -410,6 +410,21 @@ body.reduce-motion .wind-breeze{display:none!important}
  body.big .ment-heading h1{font-size:clamp(44px,8vw,70px)}
  body.big .ment-eyebrow,body.big .ment-heading p.ment-subtitle{font-size:18px}
 }
+
+/* Mida màxima de lectura sense comprimir les targetes. */
+body.very-big .cards{grid-template-columns:1fr}
+body.very-big .section-title,body.very-big .card-head h3{font-size:30px}
+body.very-big .category-title,body.very-big .card .desc,body.very-big .go,
+body.very-big .card-info,body.very-big .field input,body.very-big .field select,
+body.very-big .recent-name{font-size:24px}
+body.very-big .section-note,body.very-big .field label,body.very-big .module-note,
+body.very-big .access-option,body.very-big .module-all,body.very-big .empty{font-size:20px}
+body.very-big .tag,body.very-big .access-label{font-size:17px}
+body.very-big .module-btn{font-size:21px}
+@media(max-width:720px){
+ body.very-big .category-grid,body.very-big .module-choices{grid-template-columns:repeat(2,minmax(0,1fr))}
+ body.very-big .category-button{flex-direction:column;align-items:flex-start}
+}
 </style></head><body>
 <header class="site-hero">
  <div class="ment-hero">
@@ -437,6 +452,7 @@ body.reduce-motion .wind-breeze{display:none!important}
    <section id="access-menu" class="access-menu" hidden aria-labelledby="access-title">
      <div class="access-menu-head"><h2 id="access-title">⚙ Opcions de visualització</h2><button type="button" id="access-close" class="access-menu-close" aria-label="Tanca les opcions">✕</button></div>
      <button type="button" id="access-large" class="access-option" aria-pressed="false"><span>🔎 Lletra gran</span><span class="access-pill" aria-hidden="true">No</span></button>
+     <button type="button" id="access-very-large" class="access-option" aria-pressed="false"><span>Lletra molt gran</span><span class="access-pill" aria-hidden="true">No</span></button>
      <button type="button" id="access-contrast" class="access-option" aria-pressed="false"><span>◐ Contrast alt</span><span class="access-pill" aria-hidden="true">No</span></button>
      <button type="button" id="access-motion" class="access-option" aria-pressed="false"><span>🌿 Reduir les animacions</span><span class="access-pill" aria-hidden="true">No</span></button>
      <button type="button" id="access-reset" class="access-reset">Restableix les opcions</button>
@@ -510,7 +526,7 @@ body.reduce-motion .wind-breeze{display:none!important}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Recomanats <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els favorits compartits s’actualitzen des del servei en línia quan està activat.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div class="own-info-row"><button id="own-info" class="card-info" type="button">ℹ Fitxa del joc seleccionat</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R10</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R11</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -773,9 +789,12 @@ function setModule(m){
  $('module-current').textContent=m==='TOTS'?'Catàleg general · totes les activitats disponibles':('Espai '+m+' · recomanats del servei');
  $('fav-module-name').textContent=m==='TOTS'?'':'· '+m;
  $('fav-description').textContent=m==='TOTS'?'Tria un dels quatre serveis per consultar els seus recomanats.':(editingFavorites?'Previsualització del '+m+'. Prem «Desa i comparteix» quan acabis.':'Recursos destacats del '+m+'. Es comparteixen entre les tauletes connectades.');
- setActiveTab('biblioteca');render();renderRecents();manageUpdate();
+ setActiveTab(m==='TOTS'||editingFavorites?'biblioteca':'favorits');render();renderRecents();manageUpdate();
 }
-for(const b of document.querySelectorAll('[data-module]'))b.addEventListener('click',()=>setModule(b.dataset.module));
+for(const b of document.querySelectorAll('[data-module]'))b.addEventListener('click',()=>{
+ setModule(b.dataset.module);
+ if(!editingFavorites&&b.dataset.module!=='TOTS')$('favorits').scrollIntoView({block:'start'});
+});
 function normalize(str){return String(str).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('ca')}
 // Índex reutilitzable: menys treball quan es cerca a les tauletes de 4 GB.
 const searchIndex=new Map(items.map(x=>[x,normalize([x.name,x.cat,x.desc,groups.find(g=>g.id===groupFor(x))?.name].join(' '))]));
@@ -959,7 +978,13 @@ function render(){
   const both=[...fav.map(x=>({name:x.name,el:card(x)})),...own.map(g=>({name:g.name,el:ownFavoriteCard(g)}))].sort((a,b)=>collator.compare(a.name,b.name));
   $('favcards').replaceChildren(...both.map(x=>x.el));
   refreshOwnGameStars();
-  if(!both.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria un servei per veure els seus recomanats.':'Aquest servei encara no té recursos destacats. L’administrador els pot afegir quan s’activi el gestor en línia.';$('favcards').append(p)}
+  if(!both.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria un servei per veure els seus recomanats.':'Aquest servei encara no té favorits.';$('favcards').append(p);
+   if(activeModule!=='TOTS'){
+    const browse=document.createElement('button');browse.type='button';browse.className='filterbtn';
+    browse.textContent='Obre el catàleg de recursos';
+    browse.onclick=()=>{setActiveTab('biblioteca');$('biblioteca').scrollIntoView({block:'start'})};
+    p.append(document.createElement('br'),browse);
+   }}
   favoritesRenderKey=favoritesKey;
  }
 }
@@ -986,14 +1011,18 @@ function refreshAccessMenu(){
  const large=document.body.classList.contains('big');
  $('big').setAttribute('aria-pressed',String(large));
  setAccessButton('access-large',large);
+ setAccessButton('access-very-large',document.body.classList.contains('very-big'));
  setAccessButton('access-contrast',document.body.classList.contains('high-contrast'));
  setAccessButton('access-motion',document.body.classList.contains('reduce-motion'));
 }
 function saveAccessSetting(key,on){try{localStorage.setItem('tramuntana-'+key,on?'1':'0')}catch{}}
 function toggleAccessClass(className,key){
- const on=document.body.classList.toggle(className);saveAccessSetting(key,on);refreshAccessMenu();
+ const on=document.body.classList.toggle(className);
+ const otherSize={big:'very-big','very-big':'big'}[className];
+ if(on&&otherSize){document.body.classList.remove(otherSize);saveAccessSetting(otherSize,false)}
+ saveAccessSetting(key,on);refreshAccessMenu();
 }
-for(const [className,key] of [['big','big'],['high-contrast','high-contrast'],['reduce-motion','reduce-motion']]){
+for(const [className,key] of [['big','big'],['very-big','very-big'],['high-contrast','high-contrast'],['reduce-motion','reduce-motion']]){
  try{if(localStorage.getItem('tramuntana-'+key)==='1')document.body.classList.add(className)}catch{}
 }
 refreshAccessMenu();
@@ -1004,10 +1033,11 @@ heroSettings.addEventListener('click',()=>{
 });
 $('access-close').addEventListener('click',()=>closeAccessMenu(true));
 $('access-large').addEventListener('click',()=>toggleAccessClass('big','big'));
+$('access-very-large').addEventListener('click',()=>toggleAccessClass('very-big','very-big'));
 $('access-contrast').addEventListener('click',()=>toggleAccessClass('high-contrast','high-contrast'));
 $('access-motion').addEventListener('click',()=>toggleAccessClass('reduce-motion','reduce-motion'));
 $('access-reset').addEventListener('click',()=>{
- for(const [className,key] of [['big','big'],['high-contrast','high-contrast'],['reduce-motion','reduce-motion']]){
+ for(const [className,key] of [['big','big'],['very-big','very-big'],['high-contrast','high-contrast'],['reduce-motion','reduce-motion']]){
   document.body.classList.remove(className);saveAccessSetting(key,false);
  }
  refreshAccessMenu();$('access-large').focus();
