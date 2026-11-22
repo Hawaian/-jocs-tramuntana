@@ -1,5 +1,4 @@
 {
-  "supabaseUrl": "",
-  "supabaseAnonKey": "",
-  "_info": "Enganxa només la Project URL i la clau publicable (anon/publishable). MAI una service_role ni una clau secreta."
+  "supabaseUrl": "https://gkgtwoijpawyyugzojig.supabase.co",
+  "supabaseAnonKey": "sb_publishable_cxDQ2cI0eY1sYeKu60_mDA_rYExHt2m"
 }
