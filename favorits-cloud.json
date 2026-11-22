@@ -1,0 +1,5 @@
+{
+  "supabaseUrl": "",
+  "supabaseAnonKey": "",
+  "_info": "Enganxa només la Project URL i la clau publicable (anon/publishable). MAI una service_role ni una clau secreta."
+}
