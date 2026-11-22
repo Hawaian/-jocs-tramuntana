@@ -505,6 +505,20 @@ body.very-big .module-btn{font-size:21px}
  <p id="network-status" class="network-status" role="status" hidden>📶 Sense connexió. Pots fer servir els jocs propis i els recursos desats; per obrir webs externes i sincronitzar favorits necessites Internet.</p>
  <div class="manage-entry"><button id="manage-open" type="button" class="manage-open" disabled>⚙ Gestiona els favorits</button><span id="manage-load-status" role="status" aria-live="polite">Carregant els favorits compartits…</span></div>
 </section>
+<dialog class="about-dialog auth-dialog" id="admin-change-dialog" aria-labelledby="admin-change-title">
+ <h2 id="admin-change-title">Canvia la contrasenya</h2>
+ <form id="admin-change-form">
+  <label for="admin-new-password">Contrasenya nova</label>
+  <input id="admin-new-password" type="password" autocomplete="new-password" minlength="12" required>
+  <label for="admin-confirm-password">Repeteix la contrasenya nova</label>
+  <input id="admin-confirm-password" type="password" autocomplete="new-password" minlength="12" required>
+  <div class="manage-actions">
+   <button id="admin-change-save" type="submit">Desa la contrasenya</button>
+   <button id="admin-change-close" type="button">Tanca</button>
+  </div>
+  <p id="admin-change-status" role="status"></p>
+ </form>
+</dialog>
 <dialog class="about-dialog auth-dialog" id="admin-login-dialog" aria-labelledby="admin-login-title">
  <h2 id="admin-login-title">🔐 Accés de l'administrador</h2>
  <p>Només per a l'administració dels favorits. Els participants no han d'iniciar sessió.</p>
@@ -525,7 +539,7 @@ body.very-big .module-btn{font-size:21px}
   <button type="button" data-edit-module="STO SFG">STO SFG <span data-edit-count="STO SFG"></span></button>
  </div>
  <div id="manage-feedback" class="manage-feedback" role="status" aria-live="polite"></div>
- <div class="manage-actions"><button id="manage-save" type="button" class="manage-export">☁ Desa i comparteix els canvis</button><button id="manage-logout" type="button" class="manage-quiet">Tanca la sessió d'administració</button></div>
+ <div class="manage-actions"><button id="manage-save" type="button" class="manage-export">☁ Desa i comparteix els canvis</button><button id="manage-change-password" type="button" class="manage-quiet">Canvia la contrasenya</button><button id="manage-logout" type="button" class="manage-quiet">Tanca la sessió d'administració</button></div>
  <p class="manage-explain">Després de desar-los, les tauletes connectades recuperaran els favorits del núvol en tornar a la web o en actualitzar-se. La sincronització no és instantània.</p>
 </section>
 <section aria-labelledby="cat-title"><div class="section-head"><div><h2 id="cat-title" class="section-title">Tria una categoria</h2><p class="section-note">Activitats per treballar diferents habilitats</p></div><button id="big" class="accessibility" type="button" aria-pressed="false">🔎 Lletra gran</button></div><div id="group-buttons" class="category-grid" aria-label="Categories de jocs"></div></section>
@@ -538,7 +552,7 @@ body.very-big .module-btn{font-size:21px}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Recomanats <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els favorits compartits s’actualitzen des del servei en línia quan està activat.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div class="own-info-row"><button id="own-info" class="card-info" type="button">ℹ Fitxa del joc seleccionat</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R16</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R17</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -768,6 +782,34 @@ async function saveFavorites(){
 $('manage-open').addEventListener('click',beginManage);
 $('manage-close').addEventListener('click',()=>closeManage());
 $('manage-save').addEventListener('click',saveFavorites);
+const changePasswordDialog=$('admin-change-dialog');
+const changePasswordForm=$('admin-change-form');
+$('manage-change-password').addEventListener('click',()=>{
+ $('admin-change-status').textContent='';
+ changePasswordDialog.showModal();
+});
+$('admin-change-close').addEventListener('click',()=>changePasswordDialog.close());
+changePasswordDialog.addEventListener('close',()=>changePasswordForm.reset());
+changePasswordForm.addEventListener('submit',async event=>{
+ event.preventDefault();
+ const button=$('admin-change-save'),status=$('admin-change-status');
+ if(button.disabled||!editingFavorites)return;
+ const password=$('admin-new-password').value;
+ if(password!==$('admin-confirm-password').value){
+  status.textContent='Les dues contrasenyes han de coincidir.';return;
+ }
+ button.disabled=true;status.textContent='Desant la contrasenya…';
+ try{
+  const token=await ensureAdminSession();
+  const response=await fetch(urlFor('/auth/v1/user'),{
+   method:'PUT',headers:cloudHeaders(token),cache:'no-store',
+   body:JSON.stringify({password})
+  });
+  if(!response.ok)throw Error('Supabase no ha acceptat el canvi. Torna a iniciar sessió i comprova els requisits de la contrasenya.');
+  status.textContent='Contrasenya actualitzada.';
+ }catch(error){status.textContent=error.message}
+ finally{changePasswordForm.reset();button.disabled=false}
+});
 $('manage-logout').addEventListener('click',()=>{logoutAdmin();$('manage-load-status').textContent='Sessió d’administració tancada.'});
 $('admin-password-login').addEventListener('click',signInAdminWithPassword);
 $('admin-password').addEventListener('keydown',event=>{
