@@ -510,7 +510,9 @@ body.very-big .module-btn{font-size:21px}
  <p>Només per a l'administració dels favorits. Els participants no han d'iniciar sessió.</p>
  <label for="admin-email"><strong>Correu de l'administrador</strong></label>
  <input id="admin-email" type="email" inputmode="email" autocomplete="email" placeholder="nom@exemple.cat" required>
- <div class="manage-actions"><button id="admin-send" class="manage-export" type="button">Envia'm un enllaç d'accés</button><button id="admin-login-close" class="manage-quiet" type="button">Cancel·la</button></div>
+ <label for="admin-password"><strong>Contrasenya del compte</strong></label>
+ <input id="admin-password" type="password" autocomplete="current-password">
+ <div class="manage-actions"><button id="admin-password-login" class="manage-export" type="button">Entra amb contrasenya</button><button id="admin-send" class="manage-export" type="button">Envia'm un enllaç d'accés</button><button id="admin-login-close" class="manage-quiet" type="button">Cancel·la</button></div>
  <p id="admin-login-status" role="status" aria-live="polite">Rebràs un enllaç per iniciar sessió. Obre'l en aquest navegador.</p>
 </dialog>
 <section id="manage-panel" class="manage-panel" aria-labelledby="manage-title" hidden>
@@ -536,7 +538,7 @@ body.very-big .module-btn{font-size:21px}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Recomanats <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els favorits compartits s’actualitzen des del servei en línia quan està activat.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div class="own-info-row"><button id="own-info" class="card-info" type="button">ℹ Fitxa del joc seleccionat</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R15</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R16</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -703,6 +705,30 @@ async function sendAdminLink(){
  }catch(e){$('admin-login-status').textContent=e.message}
  finally{$('admin-send').disabled=false}
 }
+async function signInAdminWithPassword(){
+ if(!cloudConfig||$('admin-password-login').disabled)return;
+ const email=$('admin-email').value.trim();
+ const field=$('admin-password'),password=field.value,status=$('admin-login-status');
+ if(!email||!password){status.textContent='Escriu el correu i la contrasenya del compte.';return}
+ const button=$('admin-password-login');
+ button.disabled=true;status.textContent='Comprovant l’accés…';
+ try{
+  const response=await fetch(urlFor('/auth/v1/token?grant_type=password'),{
+   method:'POST',headers:cloudHeaders(),body:JSON.stringify({email,password}),cache:'no-store'
+  });
+  if(response.status===429)throw Error('Massa intents. Espera una estona abans de tornar-ho a provar.');
+  if(!response.ok)throw Error('No s’ha pogut iniciar sessió. Revisa el correu i la contrasenya del compte.');
+  const data=await response.json();
+  if(!data.access_token||!data.refresh_token)throw Error('Supabase no ha retornat una sessió vàlida.');
+  adminSession={access_token:data.access_token,refresh_token:data.refresh_token,expiresAt:Date.now()+(data.expires_in||3600)*1000};
+  await beginManage();
+  if(!editingFavorites)throw Error($('manage-load-status').textContent);
+  try{sessionStorage.setItem(sessionKey,JSON.stringify(adminSession))}catch{}
+  $('admin-login-dialog').close();
+  status.textContent='';
+ }catch(error){clearAdminSession();status.textContent=error.message}
+ finally{field.value='';button.disabled=false}
+}
 async function beginManage(){
  if(!cloudConfig){$('manage-load-status').textContent='El gestor en línia està pendent d’activar.';return}
  if(!favoritesLoaded||!cloudSynced){$('manage-load-status').textContent='Cal connexió al núvol per gestionar els favorits.';return}
@@ -716,7 +742,7 @@ async function beginManage(){
   document.body.classList.add('managing');$('manage-panel').hidden=false;
   if(activeModule==='TOTS')setModule('STO');
   manageUpdate();render();$('manage-panel').scrollIntoView({behavior:'smooth',block:'start'});
- }catch(e){$('manage-load-status').textContent=e.message;if(!adminSession?.access_token)$('admin-login-dialog').showModal()}
+ }catch(e){$('manage-load-status').textContent=e.message;if(!adminSession?.access_token&&!$('admin-login-dialog').open)$('admin-login-dialog').showModal()}
 }
 function closeManage(force=false){
  if(!editingFavorites)return;
@@ -743,6 +769,11 @@ $('manage-open').addEventListener('click',beginManage);
 $('manage-close').addEventListener('click',()=>closeManage());
 $('manage-save').addEventListener('click',saveFavorites);
 $('manage-logout').addEventListener('click',()=>{logoutAdmin();$('manage-load-status').textContent='Sessió d’administració tancada.'});
+$('admin-password-login').addEventListener('click',signInAdminWithPassword);
+$('admin-password').addEventListener('keydown',event=>{
+ if(event.key==='Enter'){event.preventDefault();signInAdminWithPassword()}
+});
+$('admin-login-dialog').addEventListener('close',()=>{$('admin-password').value=''});
 $('admin-send').addEventListener('click',sendAdminLink);
 $('admin-login-close').addEventListener('click',()=>$('admin-login-dialog').close());
 for(const b of document.querySelectorAll('[data-edit-module]'))b.addEventListener('click',()=>{setModule(b.dataset.editModule);manageUpdate()});
