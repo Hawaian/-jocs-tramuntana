@@ -1,7 +1,13 @@
 // Tramuntana · Ment Activa 3.1.6 · PWA estàtica, configuració actualitzable.
-const CACHE='mentactiva-pwa-v3-1-6';
-const ASSETS=['./','./index.html','./manifest.webmanifest','./marca-tramuntana.webp','./roda-verda.png','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./favorits.json','./favorits-cloud.json','./analitica.json','./icona-sto.svg','./icona-stoa.svg','./icona-soi.svg','./icona-sfg.svg'];
-self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
+const CACHE='mentactiva-pwa-v3-1-6-r2';
+const ASSETS=['./','./index.html','./manifest.webmanifest','./marca-tramuntana.webp','./roda-verda.png','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./icona-sto.svg','./icona-stoa.svg','./icona-soi.svg','./icona-sfg.svg'];
+const CONFIG=['./favorits.json','./favorits-cloud.json','./analitica.json'];
+self.addEventListener('install',event=>{
+ event.waitUntil(caches.open(CACHE).then(async cache=>{
+  await cache.addAll(ASSETS);
+  await Promise.allSettled(CONFIG.map(path=>cache.add(path)));
+ }));
+});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>(k.startsWith('tramuntana-pwa-')||k.startsWith('mentactiva-pwa-'))&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()))});
 self.addEventListener('message',event=>{if(event.data?.type==='SKIP_WAITING')self.skipWaiting()});
 self.addEventListener('fetch',event=>{

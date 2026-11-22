@@ -365,6 +365,18 @@ body.reduce-motion *,body.reduce-motion *::before,body.reduce-motion *::after{an
 body.reduce-motion .ment-logo-wheel{transform:none!important}
 body.reduce-motion .wind-breeze{display:none!important}
 @media(max-width:560px){.access-menu{top:68px;right:7px;width:min(355px,calc(100% - 14px));padding:12px}.access-menu h2{font-size:17px}}
+
+/* Capçalera més baixa en tauletes i mòbils amb la pantalla en vertical. */
+@media (max-width:870px) and (orientation:portrait){
+ .ment-brand{padding:10px 14px 13px}
+ .ment-logo-wrap{width:min(245px,70%)}
+ .ment-heading h1{font-size:clamp(32px,5.5vw,43px)}
+ .ment-scene{min-height:0;aspect-ratio:2.4}
+ .ment-scene>img{position:absolute;inset:0;object-position:50% 42%}
+ .ment-hero{min-height:0}
+ .wind-breeze{display:none}
+ body.big .ment-heading h1{font-size:clamp(42px,6.2vw,50px)}
+}
 </style></head><body>
 <header class="site-hero">
  <div class="ment-hero">
@@ -461,11 +473,11 @@ body.reduce-motion .wind-breeze{display:none!important}
  <div class="section-head"><div><h2 class="section-title" id="recent-title">🕘 Últimes activitats</h2><p class="section-note" id="recent-description">Per reprendre fàcilment les activitats en aquesta tauleta</p></div><button type="button" id="recent-clear" class="manage-quiet">Neteja la llista</button></div>
  <div id="recent-cards" class="recent-grid"></div>
 </section>
-<section id="biblioteca" class="content-area" aria-labelledby="library-title"><h2 class="section-title" id="library-title">Catàleg de recursos</h2><p class="section-note" id="group-description">Tots els recursos, ordenats alfabèticament</p><div class="search-panel" style="margin-top:15px"><div class="filters"><div class="field"><label for="search">Cerca un joc o una activitat</label><input id="search" type="search" placeholder="Escriu el nom d'un joc..." autocomplete="off"></div><div class="field"><label for="level">Dificultat</label><select id="level"><option value="">Tots els nivells</option><option value="Inicial">Inicial</option><option value="Mitjà">Mitjà</option></select></div><div class="field"><label for="lang">Idioma</label><select id="lang"><option value="">Tots els idiomes</option><option value="CA">Català</option><option value="ES">Castellà</option><option value="EN">Anglès</option></select></div></div><p class="sort-info"><span class="az-badge">A → Z</span> Ordenació alfabètica en català (també amb els filtres i els preferits)</p></div><div class="status"><strong id="count" aria-live="polite"></strong><button id="reset" class="filterbtn" type="button">Mostra tots els jocs</button></div><div id="cards" class="cards"></div></section>
+<section id="biblioteca" class="content-area" aria-labelledby="library-title"><h2 class="section-title" id="library-title">Catàleg de recursos</h2><p class="section-note" id="group-description">Tots els recursos, ordenats alfabèticament</p><div class="search-panel" style="margin-top:15px"><div class="filters"><div class="field"><label for="search">Cerca un joc o una activitat</label><input id="search" type="search" placeholder="Escriu el nom d'un joc..." autocomplete="off"></div><div class="field"><label for="level">Dificultat</label><select id="level"><option value="">Tots els nivells</option><option value="Inicial">Inicial</option><option value="Mitjà">Mitjà</option></select></div><div class="field"><label for="lang">Idioma</label><select id="lang"><option value="">Tots els idiomes</option><option value="CA">Català</option><option value="ES">Castellà</option><option value="EN">Anglès</option><option value="MULTI">Diversos idiomes</option></select></div></div><p class="sort-info"><span class="az-badge">A → Z</span> Ordenació alfabètica en català (també amb els filtres i els preferits)</p></div><div class="status"><strong id="count" aria-live="polite"></strong><button id="reset" class="filterbtn" type="button">Mostra tots els jocs</button></div><div id="cards" class="cards"></div></section>
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Recomanats <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els favorits compartits s’actualitzen des del servei en línia quan està activat.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div class="own-info-row"><button id="own-info" class="card-info" type="button">ℹ Fitxa del joc seleccionat</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 · En preparació</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.1.6 R2</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -483,15 +495,15 @@ XTEC · Materials i jocs|Variats|CA|Tots|https://projectes.xtec.cat/acollidasupo
 Adaptatech|Autonomia|ES|Tots|https://adaptatech.org/|Recursos de tecnologia accessible|♿
 La Motxilla|Variats|CA|Tots|http://www.ceip-diputacio.com/la%20motxilla.htm|Portal clàssic amb jocs i enllaços|🎒
 Cokitos|Variats|ES|Tots|https://www.cokitos.com/|Jocs educatius per habilitats|💡
-Liveworksheets|Variats|ES|Tots|https://www.liveworksheets.com/|Fitxes interactives|📝
+Liveworksheets|Variats|MULTI|Tots|https://www.liveworksheets.com/|Fitxes interactives|📝
 Math Playground|Matemàtiques|EN|Mitjà|https://www.mathplayground.com/|Jocs de càlcul i raonament|🏎️
 Arcademics|Matemàtiques|EN|Mitjà|https://www.arcademics.com/|Reptes matemàtics amb joc|🏁
 Poki · Puzles|Lògica|ES|Tots|https://poki.com/es/puzzle|Jocs de lògica; cal revisar els anuncis|🧠
 Jigsaw Planet|Puzles|ES|Tots|https://www.jigsawplanet.com/|Trencaclosques d’imatges|🧩
 Online Jigsaw Puzzles|Puzles|EN|Tots|https://www.thejigsawpuzzles.com/|Puzles de moltes peces|🖼️
 Games to Learn English|Llenguatge|EN|Inicial|https://www.gamestolearnenglish.com/|Vocabulari visual en anglès|🗨️
-LearningApps|Variats|ES|Tots|https://learningapps.org/|Activitats de relacionar i ordenar|🔗
-Baamboozle|Variats|ES|Tots|https://www.baamboozle.com/|Jocs de preguntes per grups|👥
+LearningApps|Variats|MULTI|Tots|https://learningapps.org/|Activitats de relacionar i ordenar|🔗
+Baamboozle|Variats|MULTI|Tots|https://www.baamboozle.com/|Jocs de preguntes per grups|👥
 PBS Kids Games|Variats|EN|Inicial|https://pbskids.org/games|Jocs visuals de diferents temes|🌟
 Sesame Street Games|Variats|EN|Inicial|https://www.sesamestreet.org/games|Activitats senzilles i visuals|🎈
 ABCya|Variats|EN|Inicial|https://www.abcya.com/|Jocs educatius per temàtiques|🅰️
@@ -503,7 +515,7 @@ Chrome Music Lab|Creativitat|EN|Tots|https://musiclab.chromeexperiments.com/|Cre
 Quick, Draw!|Creativitat|ES|Tots|https://quickdraw.withgoogle.com/|Dibuixar i endevinar amb IA|✏️
 AutoDraw|Creativitat|EN|Tots|https://www.autodraw.com/|Dibuix lliure amb ajuda visual|🖍️
 Sketchpad|Creativitat|EN|Tots|https://sketch.io/sketchpad/|Pintar i crear amb eines digitals|🎨
-Google Arts & Culture|Cultura|ES|Tots|https://artsandculture.google.com/|Explorar art i patrimoni|🏛️
+Google Arts & Culture|Cultura|EN|Tots|https://artsandculture.google.com/|Explorar art i patrimoni|🏛️
 Seterra · Geografia|Cultura|ES|Mitjà|https://www.geoguessr.com/es/quiz/seterra|Mapes i geografia; comprovar a Brave|🗺️
 Lichess · Puzles|Lògica|ES|Mitjà|https://lichess.org/training|Reptes d’escacs|♟️
 Sudoku.com|Lògica|ES|Mitjà|https://sudoku.com/es|Sudokus de dificultat variable|🔲
@@ -520,6 +532,11 @@ Fast Vocab · Anglès visual|Llenguatge|EN|Inicial|https://www.gamestolearnengli
 const items=data.trim().split('\n').map(line=>{const [name,cat,lang,level,url,desc,emoji]=line.split('|');return {name,cat,lang,level,url,desc,emoji}});
 const $=id=>document.getElementById(id);
 const collator=new Intl.Collator('ca',{sensitivity:'base',numeric:true});
+const languageLabels={CA:'Català',ES:'Castellà',EN:'Anglès',MULTI:'Diversos idiomes'};
+const catalogOrder=[...items].sort((a,b)=>collator.compare(a.name,b.name));
+const translationNotes={
+ 'Google Arts & Culture':'La web té una versió en castellà. Per llegir el text en català, pots provar la traducció automàtica del navegador si hi està disponible. La traducció pot no arribar als textos dins d’imatges, vídeos o activitats.'
+};
 const groups=[
   {id:'attention',name:'Atenció i memòria',icon:'🧠',style:'cat-attention'},
   {id:'autonomia',name:'Autonomia i vida diària',icon:'🏠',style:'cat-autonomia'},
@@ -793,7 +810,7 @@ function openActivityGuide(x,own=false){
  $('activity-access').textContent=own?'Joc propi · Sense connexió':direct?'Accés a una activitat concreta':'Portal de recursos · Tria el joc a dins';
  $('activity-goal').textContent=guide.goal||groupGoals[groupFor(x)]||x.desc;
  $('activity-how').textContent=guide.how||(direct?'Obre l’activitat i segueix les indicacions. Demana suport al monitor si cal.':'Entra al portal i busca una activitat adequada. És possible que hagis de navegar per diferents opcions.');
- $('activity-data').textContent=(own?'Idioma: català · Nivells: inicial, mitjà i avançat · Funciona sense Internet després de la primera visita.':'Idioma del recurs: '+({CA:'català',ES:'castellà',EN:'anglès'}[x.lang]||x.lang)+' · Dificultat orientativa: '+(x.level==='Tots'?'variable':x.level.toLowerCase())+' · Necessita Internet.');
+ $('activity-data').textContent=(own?'Idioma: català · Nivells: inicial, mitjà i avançat · Funciona sense Internet després de la primera visita.':'Idioma del recurs: '+(languageLabels[x.lang]||x.lang).toLocaleLowerCase('ca')+' · Dificultat orientativa: '+(x.level==='Tots'?'variable':x.level.toLowerCase())+' · Necessita Internet.')+(translationNotes[x.name]?' '+translationNotes[x.name]:'');
  $('activity-note').textContent=guide.note||(own?'Activitat sense anuncis i sense identificació.':'La fitxa és orientativa: comprova l’accessibilitat, els anuncis i l’adequació abans de fer-la amb el grup.');
  $('activity-visit').hidden=own;
  $('activity-own-play').hidden=!own;
@@ -862,7 +879,7 @@ function card(x){
  const access=document.createElement('p');access.className='access-label';access.textContent=isDirect(x)?'✓ Activitat concreta':'▣ Portal de recursos';
  const tags=document.createElement('div');tags.className='tags';
  const labelGroup=groups.find(g=>g.id===groupFor(x))?.name||x.cat;
- for(const t of [labelGroup,x.level==='Tots'?'Tots els nivells':x.level,{CA:'Català',ES:'Castellà',EN:'Anglès'}[x.lang]||x.lang]){
+ for(const t of [labelGroup,x.level==='Tots'?'Tots els nivells':x.level,languageLabels[x.lang]||x.lang]){
   const s=document.createElement('span');s.className='tag';s.textContent=t;tags.append(s);
  }
  const a=document.createElement('a');a.className='go';a.href=x.url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=isDirect(x)?'Juga ara ↗':'Explora recursos ↗';a.setAttribute('aria-label','Obrir '+x.name+' (web externa)');a.addEventListener('click',()=>{recordRecent('recurs',x.name);trackActivity('recurs',x.name)});
@@ -885,22 +902,33 @@ function ownFavoriteCard(g){
  const actions=document.createElement('div');actions.className='card-actions';actions.append(info,go);
  el.append(heading,d,tags,actions);return el;
 }
+let catalogRenderKey, favoritesRenderKey;
 function render(){
  const q=normalize($('search').value.trim()),lev=$('level').value,lang=$('lang').value;
- const matches=items.filter(x=>(!activeGroup||groupFor(x)===activeGroup)&&(!q||searchIndex.get(x).includes(q))&&(!lev||x.level===lev||x.level==='Tots')&&(!lang||x.lang===lang))
- .sort((a,b)=>collator.compare(a.name,b.name));
- const current=groups.find(g=>g.id===activeGroup);
- $('group-description').textContent=current?current.name+' · Jocs ordenats de la A a la Z':'Tots els recursos, ordenats alfabèticament';
- for(const b of $('group-buttons').querySelectorAll('[data-group]'))b.setAttribute('aria-pressed',String(b.dataset.group===activeGroup));
- $('count').textContent=matches.length+' '+(matches.length===1?'recurs disponible':'recursos disponibles');
- $('cards').replaceChildren(...matches.map(card));
- if(!matches.length){const p=document.createElement('p');p.className='empty';p.textContent='No hem trobat cap recurs. Prova de canviar els filtres.';$('cards').append(p)}
- const fav=items.filter(x=>moduleFavorites().includes(x.name)).sort((a,b)=>collator.compare(a.name,b.name));
- const own=ownGames.filter(g=>moduleFavorites().includes('propi:'+g.id));
- const both=[...fav.map(x=>({name:x.name,el:card(x)})),...own.map(g=>({name:g.name,el:ownFavoriteCard(g)}))].sort((a,b)=>collator.compare(a.name,b.name));
- $('favcards').replaceChildren(...both.map(x=>x.el));
- refreshOwnGameStars();
- if(!both.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria un servei per veure els seus recomanats.':'Aquest servei encara no té recursos destacats. L’administrador els pot afegir quan s’activi el gestor en línia.';$('favcards').append(p)}
+ const favorites=moduleFavorites();
+ // Els canvis de pestanya o una lectura idèntica de favorits no obliguen a recrear targetes.
+ const favoriteState=JSON.stringify([favorites.length||editingFavorites?activeModule:'',editingFavorites,favorites]);
+ const catalogKey=JSON.stringify([q,lev,lang,activeGroup,favoriteState]);
+ if(catalogKey!==catalogRenderKey){
+  const matches=catalogOrder.filter(x=>(!activeGroup||groupFor(x)===activeGroup)&&(!q||searchIndex.get(x).includes(q))&&(!lev||x.level===lev||x.level==='Tots')&&(!lang||x.lang===lang));
+  const current=groups.find(g=>g.id===activeGroup);
+  $('group-description').textContent=current?current.name+' · Jocs ordenats de la A a la Z':'Tots els recursos, ordenats alfabèticament';
+  for(const b of $('group-buttons').querySelectorAll('[data-group]'))b.setAttribute('aria-pressed',String(b.dataset.group===activeGroup));
+  $('count').textContent=matches.length+' '+(matches.length===1?'recurs disponible':'recursos disponibles');
+  $('cards').replaceChildren(...matches.map(card));
+  if(!matches.length){const p=document.createElement('p');p.className='empty';p.textContent='No hem trobat cap recurs. Prova de canviar els filtres.';$('cards').append(p)}
+  catalogRenderKey=catalogKey;
+ }
+ const favoritesKey=JSON.stringify([activeModule,favoriteState]);
+ if(favoritesKey!==favoritesRenderKey){
+  const fav=catalogOrder.filter(x=>favorites.includes(x.name));
+  const own=ownGames.filter(g=>favorites.includes('propi:'+g.id));
+  const both=[...fav.map(x=>({name:x.name,el:card(x)})),...own.map(g=>({name:g.name,el:ownFavoriteCard(g)}))].sort((a,b)=>collator.compare(a.name,b.name));
+  $('favcards').replaceChildren(...both.map(x=>x.el));
+  refreshOwnGameStars();
+  if(!both.length){const p=document.createElement('p');p.className='empty';p.textContent=activeModule==='TOTS'?'Tria un servei per veure els seus recomanats.':'Aquest servei encara no té recursos destacats. L’administrador els pot afegir quan s’activi el gestor en línia.';$('favcards').append(p)}
+  favoritesRenderKey=favoritesKey;
+ }
 }
 // No reconstruir 50 targetes a cada tecla premuda: esperem una fracció de segon.
 let searchTimer=null;
