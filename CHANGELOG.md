@@ -1,5 +1,11 @@
 # Registre de canvis de Tramuntana · Ment Activa
 
+## 3.2.3 — 23/11/2026
+
+- HTML, CSS i JavaScript en fitxers independents, amb la lògica i els estils existents.
+- Memòria cau de la PWA actualitzada per incloure els fitxers nous.
+- Comentaris de versions antigues revisats i documentació actualitzada.
+
 ## 3.2.2 — 23/11/2026
 
 - Edició dels preferits des de les opcions de configuració.

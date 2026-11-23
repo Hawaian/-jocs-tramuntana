@@ -4,7 +4,7 @@
 
 ▶️ **[Obre Ment Activa](https://hawaian.github.io/-jocs-tramuntana/)** · **[Registre de canvis](CHANGELOG.md)**
 
-**Versió 3.2.2 · 23 de novembre de 2026**
+**Versió 3.2.3 · 23 de novembre de 2026**
 
 ## Què hi trobaràs
 
@@ -60,7 +60,9 @@ Per canviar la contrasenya, el panell d’edició inclou **Canvia la contrasenya
 
 | Fitxer | Funció |
 | --- | --- |
-| [index.html](index.html) | Interfície, catàleg, activitats pròpies i gestió de preferits. |
+| [index.html](index.html) | Estructura de la pàgina i seccions. |
+| [styles.css](styles.css) | Estils, accessibilitat visual i animacions. |
+| [app.js](app.js) | Catàleg, activitats, preferits i connexió a Supabase. |
 | [sw.js](sw.js) | Memòria cau i actualització de la PWA. |
 | [manifest.webmanifest](manifest.webmanifest) | Identitat, icones i instal·lació de la PWA. |
 | [favorits-cloud.json](favorits-cloud.json) | URL del projecte Supabase i clau publicable per a la web. |
