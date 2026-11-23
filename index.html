@@ -465,6 +465,7 @@ body.very-big .module-btn{font-size:21px}
      <button type="button" id="access-very-large" class="access-option" aria-pressed="false"><span>Lletra molt gran</span><span class="access-pill" aria-hidden="true">No</span></button>
      <button type="button" id="access-contrast" class="access-option" aria-pressed="false"><span>◐ Contrast alt</span><span class="access-pill" aria-hidden="true">No</span></button>
      <button type="button" id="access-motion" class="access-option" aria-pressed="false"><span>🌿 Reduir les animacions</span><span class="access-pill" aria-hidden="true">No</span></button>
+     <button type="button" id="manage-open" class="access-option" disabled>Edita els preferits</button>
      <button type="button" id="access-reset" class="access-reset">Restableix les opcions</button>
      <p class="access-hint">Les preferències es guarden només en aquest dispositiu.</p>
    </section>
@@ -503,7 +504,7 @@ body.very-big .module-btn{font-size:21px}
  <button type="button" class="module-all" data-module="TOTS">📚 Tots els jocs · Catàleg complet</button>
  <div class="module-note">Cada servei té la seva selecció de jocs. Els recomanats es compartiran entre tauletes quan activem la sincronització. Tots els jocs continuen accessibles.</div>
  <p id="network-status" class="network-status" role="status" hidden>📶 Sense connexió. Pots fer servir els jocs propis i els recursos desats; per obrir webs externes i sincronitzar favorits necessites Internet.</p>
- <div class="manage-entry"><button id="manage-open" type="button" class="manage-open" disabled>⚙ Gestiona els favorits</button><span id="manage-load-status" role="status" aria-live="polite">Carregant els favorits compartits…</span></div>
+ <div class="manage-entry"><span id="manage-load-status" role="status" aria-live="polite">Carregant els favorits compartits…</span></div>
 </section>
 <dialog class="about-dialog auth-dialog" id="admin-change-dialog" aria-labelledby="admin-change-title">
  <h2 id="admin-change-title">Canvia la contrasenya</h2>
@@ -526,6 +527,7 @@ body.very-big .module-btn{font-size:21px}
  <input id="admin-email" type="email" inputmode="email" autocomplete="email" placeholder="nom@exemple.cat" required>
  <label for="admin-password"><strong>Contrasenya del compte</strong></label>
  <input id="admin-password" type="password" autocomplete="current-password">
+ <label><input id="admin-remember-device" type="checkbox"> Recorda l’accés en aquest dispositiu</label>
  <div class="manage-actions"><button id="admin-password-login" class="manage-export" type="button">Entra amb contrasenya</button><button id="admin-send" class="manage-export" type="button">Envia'm un enllaç d'accés</button><button id="admin-login-close" class="manage-quiet" type="button">Cancel·la</button></div>
  <p id="admin-login-status" role="status" aria-live="polite">Rebràs un enllaç per iniciar sessió. Obre'l en aquest navegador.</p>
 </dialog>
@@ -552,7 +554,7 @@ body.very-big .module-btn{font-size:21px}
 <section id="favorits" class="content-area" aria-labelledby="favorites-title" hidden><h2 id="favorites-title" class="section-title">⭐ Recomanats <span id="fav-module-name"></span></h2><p class="section-note" id="fav-description">Selecciona un mòdul per veure els seus recursos. Els favorits compartits s’actualitzen des del servei en línia quan està activat.</p><div id="favcards" class="cards" style="margin-top:18px"></div></section>
 <section id="propis" class="content-area" aria-labelledby="own-title" hidden><h2 id="own-title" class="section-title">🎮 Activitats pròpies del Tramuntana</h2><p class="section-note">Sense anuncis ni registres. Es poden jugar sense connexió després de la primera visita.</p><div class="panel gamebox"><div class="levelbox"><label for="gamelevel"><strong>Nivell:</strong></label><select id="gamelevel"><option value="1">1 · Inicial</option><option value="2">2 · Mitjà</option><option value="3">3 · Avançat</option></select></div><div class="actions"><button data-game="count" type="button">🔢 Comptem</button><button data-game="memory" type="button">🃏 Parelles</button><button data-game="sequence" type="button">🔎 Què falta?</button><button data-game="odd" type="button">🧩 Troba l’intrús</button><button data-game="sort" type="button">🔢 Ordena nombres</button></div><div class="own-info-row"><button id="own-info" class="card-info" type="button">ℹ Fitxa del joc seleccionat</button></div><div id="gamearea" class="gamearea"><h3>Tria un joc per començar</h3></div><div class="actions"><button id="again" type="button">🔄 Tornar a començar</button></div></div></section>
 <div class="notice"><strong>Per a l'equip educatiu:</strong> les dificultats són orientatives. Alguns recursos externs poden mostrar publicitat, demanar un compte o requerir Internet. Comproveu-los a Brave abans d'utilitzar-los amb els participants.</div><div id="update" class="update" role="status" hidden><span>Hi ha una versió nova de Ment Activa.</span><button id="updatebtn" class="filterbtn" type="button">Actualitza</button></div></main>
-<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.2</span></footer>
+<footer class="footer"><strong>🧠 Tramuntana · Ment Activa</strong><span>Ment Activa · Versió 3.2.1 · Prova</span></footer>
 <script>'use strict';
 const data=`Pictojuegos|Comunicació|ES|Inicial|https://www.pictojuegos.com/|Jocs visuals amb pictogrames|🗣️
 JClic · Biblioteca|Variats|CA|Tots|https://clic.xtec.cat/repo/|Biblioteca d’activitats interactives|🧩
@@ -650,6 +652,13 @@ const ownGames=[
 ];
 const ownGameIds=new Set(ownGames.map(g=>'propi:'+g.id));
 const sessionKey='mentactiva-admin-session-31';
+const rememberedSessionKey='mentactiva-admin-device:'+location.pathname.replace(/index\.html$/,'');
+let rememberAdminDevice=false;
+function storeAdminSession(){
+ const storage=rememberAdminDevice?localStorage:sessionStorage;
+ storage.setItem(rememberAdminDevice?rememberedSessionKey:sessionKey,JSON.stringify(adminSession));
+ if(rememberAdminDevice)sessionStorage.removeItem(sessionKey);
+}
 const cacheKey='mentactiva-cloud-favorites-31';
 function copyFavorites(obj){return Object.fromEntries(editableModules.map(m=>[m,[...(obj[m]||[])]]))}
 function allowedFavorites(ids){const ok=new Set([...items.map(x=>x.name),...ownGameIds]);return Array.isArray(ids)?[...new Set(ids.filter(id=>typeof id==='string'&&ok.has(id)))]:[]}
@@ -683,10 +692,16 @@ function readAuthRedirect(){
  const p=new URLSearchParams(location.hash.replace(/^#/,''));
  if(p.has('access_token')&&p.has('refresh_token')){
   adminSession={access_token:p.get('access_token'),refresh_token:p.get('refresh_token'),expiresAt:Date.now()+Math.max(60,Number(p.get('expires_in')||3600))*1000};
-  try{sessionStorage.setItem(sessionKey,JSON.stringify(adminSession))}catch{}
+  try{storeAdminSession()}catch{}
   history.replaceState(null,'',location.pathname+location.search);
  }else{
   try{adminSession=JSON.parse(sessionStorage.getItem(sessionKey)||'null')}catch{adminSession=null}
+  if(!adminSession){
+   try{
+    adminSession=JSON.parse(localStorage.getItem(rememberedSessionKey)||'null');
+    rememberAdminDevice=Boolean(adminSession);
+   }catch{adminSession=null}
+  }
  }
 }
 async function ensureAdminSession(){
@@ -695,7 +710,7 @@ async function ensureAdminSession(){
   const r=await fetch(urlFor('/auth/v1/token?grant_type=refresh_token'),{method:'POST',headers:cloudHeaders(),body:JSON.stringify({refresh_token:adminSession.refresh_token}),cache:'no-store'});
   if(!r.ok){clearAdminSession();throw Error('La sessió ha caducat. Torna a entrar des del correu.')}
   const o=await r.json();adminSession={access_token:o.access_token,refresh_token:o.refresh_token,expiresAt:Date.now()+(o.expires_in||3600)*1000};
-  try{sessionStorage.setItem(sessionKey,JSON.stringify(adminSession))}catch{}
+  try{storeAdminSession()}catch{}
  }
  const resp=await fetch(urlFor('/rest/v1/rpc/is_favorites_admin'),{method:'POST',headers:cloudHeaders(adminSession.access_token),body:'{}',cache:'no-store'});
  if(resp.status===401){clearAdminSession();throw Error('La sessió ha caducat. Torna a identificar-te.')}
@@ -704,7 +719,12 @@ async function ensureAdminSession(){
  if(authorized!==true)throw Error('Aquest compte no té permís per editar els favorits.');
  return adminSession.access_token;
 }
-function clearAdminSession(){adminSession=null;try{sessionStorage.removeItem(sessionKey)}catch{}}
+function clearAdminSession(){
+ adminSession=null;
+ rememberAdminDevice=false;
+ try{sessionStorage.removeItem(sessionKey)}catch{}
+ try{localStorage.removeItem(rememberedSessionKey)}catch{}
+}
 function logoutAdmin(){clearAdminSession();if(editingFavorites)closeManage(true)}
 async function sendAdminLink(){
  if(!cloudConfig)return;
@@ -737,7 +757,10 @@ async function signInAdminWithPassword(){
   adminSession={access_token:data.access_token,refresh_token:data.refresh_token,expiresAt:Date.now()+(data.expires_in||3600)*1000};
   await beginManage();
   if(!editingFavorites)throw Error($('manage-load-status').textContent);
-  try{sessionStorage.setItem(sessionKey,JSON.stringify(adminSession))}catch{}
+  rememberAdminDevice=$('admin-remember-device').checked;
+  try{storeAdminSession()}catch{
+   $('manage-load-status').textContent='Sessió iniciada. El navegador no ha pogut recordar l’accés.';
+  }
   $('admin-login-dialog').close();
   status.textContent='';
  }catch(error){clearAdminSession();status.textContent=error.message}
@@ -779,7 +802,7 @@ async function saveFavorites(){
  }catch(e){$('manage-feedback').textContent='⚠ '+e.message}
  finally{savingFavorites=false;manageUpdate();if(savedSuccessfully)$('manage-feedback').textContent='✓ Favorits desats i compartits.'}
 }
-$('manage-open').addEventListener('click',beginManage);
+$('manage-open').addEventListener('click',()=>{closeAccessMenu();beginManage()});
 $('manage-close').addEventListener('click',()=>closeManage());
 $('manage-save').addEventListener('click',saveFavorites);
 const changePasswordDialog=$('admin-change-dialog');
