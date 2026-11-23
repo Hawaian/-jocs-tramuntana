@@ -1,5 +1,11 @@
 # Registre de canvis de Tramuntana · Ment Activa
 
+## 3.2.2 — 23/11/2026
+
+- Edició dels preferits des de les opcions de configuració.
+- Accés recordat amb el compte de feina, verificat després de tancar i reobrir Ment Activa a la CUBOT 1.
+- Llista de preferits de STO SFG preparada i sincronització entre tauletes comprovada.
+
 ## 3.2 — 22/11/2026
 
 - Favorits compartits amb Supabase per a STO, STOA, SOI i STO SFG. La lectura és pública i l’edició està reservada als comptes autoritzats.

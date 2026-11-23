@@ -4,7 +4,7 @@
 
 ▶️ **[Obre Ment Activa](https://hawaian.github.io/-jocs-tramuntana/)** · **[Registre de canvis](CHANGELOG.md)**
 
-**Versió 3.2 · 22 de novembre de 2026**
+**Versió 3.2.2 · 23 de novembre de 2026**
 
 ## Què hi trobaràs
 
@@ -28,6 +28,10 @@ El menú **⚙ Opcions de visualització** permet triar **Lletra gran**, **Lletr
 
 A la CUBOT en vertical, la capçalera compacta deixa més espai al selector. Els botons d’informació i configuració queden a sobre de STO SFG tant en aquesta vista com al PC.
 
+### Animacions
+
+En obrir Ment Activa, la roda verda del logotip de Tramuntana gira. Les icones dels quatre serveis tenen animacions pròpies i, quan en tries un, la pantalla es manté al lloc perquè puguis veure el moviment. El botó d’engranatge ⚙ obre el menú de visualització.
+
 ### Instal·lació i funcionament sense connexió
 
 Obre Ment Activa a Brave o Chrome. Si el navegador ofereix **Instal·la l’aplicació** o **Afegeix a la pantalla d’inici**, fes servir aquesta opció per tenir-hi accés directe.
@@ -40,11 +44,13 @@ Cada servei té la seva pròpia llista a Supabase. Els participants poden consul
 
 ### Editar una llista
 
-1. Prem **Gestiona els favorits** i entra amb el compte d’administració.
+1. Obre **⚙ → Edita els preferits**. El primer cop, marca **Recorda l’accés en aquest dispositiu** i entra amb el compte de feina.
 2. Tria el servei que vols editar i baixa al catàleg.
 3. Toca **☆** per afegir un recurs o **★** per treure’l.
-4. Prem **Desa i comparteix els canvis**.
+4. Prem **Desa i comparteix els canvis** i espera la confirmació abans de prémer **Tanca**.
 5. En una altra tauleta, obre el mateix servei i toca **⭐ Preferits**. Recarrega la pàgina si vols comprovar el canvi immediatament.
+
+A la CUBOT 1, **Tanca** surt del panell i conserva l’accés recordat. **Tanca la sessió d’administració** fa que la tauleta oblidi l’accés.
 
 Per canviar la contrasenya, el panell d’edició inclou **Canvia la contrasenya**. Fes-ho des d’una sessió d’administració activa.
 
