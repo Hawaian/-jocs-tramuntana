@@ -4,7 +4,7 @@
 
 ▶️ **[Obre Ment Activa](https://hawaian.github.io/-jocs-tramuntana/)** · **[Registre de canvis](CHANGELOG.md)**
 
-**Versió 3.2.4 · 25 de novembre de 2026**
+**Versió 3.2.5 · 25 de novembre de 2026**
 
 ## Què hi trobaràs
 
@@ -26,7 +26,7 @@ Ment Activa reuneix jocs i recursos per treballar l’atenció, la memòria, la 
 
 El menú **⚙ Opcions de visualització** permet triar **Lletra gran**, **Lletra molt gran**, **Contrast alt** i **Reduir les animacions**. El mode **Lletra molt gran** mostra les fitxes en una sola columna. Les preferències es guarden al dispositiu.
 
-A la CUBOT en vertical, la capçalera compacta deixa més espai al selector. Els botons d’informació i configuració queden a sobre de STO SFG tant en aquesta vista com al PC. En mòbil, queden a la franja blanca de sota la il·lustració.
+A la CUBOT en vertical, la capçalera compacta deixa més espai al selector. Els botons d’informació i configuració queden a sobre de STO SFG tant en aquesta vista com al PC. En mòbil, queden a la cantonada superior dreta del selector de serveis.
 
 ### Animacions
 
