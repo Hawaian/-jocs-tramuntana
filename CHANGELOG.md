@@ -1,5 +1,9 @@
 # Registre de canvis de Tramuntana · Ment Activa
 
+## 3.2.4 — 25/11/2026
+
+- Els botons d’informació i configuració es mostren sota la il·lustració en mòbil.
+
 ## 3.2.3 — 23/11/2026
 
 - HTML, CSS i JavaScript en fitxers independents, amb la lògica i els estils existents.

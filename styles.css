@@ -436,3 +436,18 @@ body.very-big .module-btn{font-size:21px}
 
 #favcards{margin-top:18px}
 #biblioteca .search-panel{margin-top:15px}
+
+/* En mòbil, els controls tenen una franja pròpia sota la il·lustració. */
+@media(max-width:599px){
+ .ment-scene{min-height:0;aspect-ratio:auto}
+ .ment-scene>img{position:static;height:auto;aspect-ratio:932/465}
+ .ment-tools{
+  position:relative;inset:auto;justify-content:flex-end;
+  padding:8px 12px;background:#fff;
+ }
+ .ment-tools .hero-action{width:44px;min-width:44px}
+ .access-menu{top:calc(100% + 4px);right:12px;width:min(355px,calc(100% - 24px))}
+}
+@media(max-width:599px) and (orientation:portrait){
+ .ment-scene>img{aspect-ratio:2.4}
+}

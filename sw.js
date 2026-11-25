@@ -1,6 +1,6 @@
 // Tramuntana · Ment Activa · PWA estàtica, configuració actualitzable.
-const CACHE='mentactiva-pwa-v3-2-3';
-const ASSETS=['./','./index.html','./styles.css?v=323','./app.js?v=323','./manifest.webmanifest','./marca-tramuntana.webp','./roda-verda.png','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./icona-sto.svg','./icona-stoa.svg','./icona-soi.svg','./icona-sfg.svg'];
+const CACHE='mentactiva-pwa-v3-2-4';
+const ASSETS=['./','./index.html','./styles.css?v=324','./app.js?v=323','./manifest.webmanifest','./marca-tramuntana.webp','./roda-verda.png','./capcalera-mobil-viver.webp','./icon-192.png','./icon-512.png','./icon-maskable-512.png','./icona-sto.svg','./icona-stoa.svg','./icona-soi.svg','./icona-sfg.svg'];
 const CONFIG=['./favorits.json','./favorits-cloud.json','./analitica.json'];
 self.addEventListener('install',event=>{
  event.waitUntil(caches.open(CACHE).then(async cache=>{
@@ -19,7 +19,7 @@ self.addEventListener('fetch',event=>{
    return;
  }
  if(req.mode==='navigate'){
-   event.respondWith(fetch(req).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put('./index.html','./styles.css?v=323','./app.js?v=323',copy)))}return res}).catch(async()=>await caches.match('./index.html')||Response.error()));return;
+   event.respondWith(fetch(req).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put('./index.html','./styles.css?v=324','./app.js?v=323',copy)))}return res}).catch(async()=>await caches.match('./index.html')||Response.error()));return;
  }
  event.respondWith(caches.match(req).then(hit=>hit||fetch(req).then(res=>{if(res.ok){const copy=res.clone();event.waitUntil(caches.open(CACHE).then(c=>c.put(req,copy)))}return res})));
 });
